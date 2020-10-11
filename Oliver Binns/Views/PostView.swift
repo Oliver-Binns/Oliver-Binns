@@ -26,6 +26,7 @@ struct PostView: View {
                             .font(.system(size: 17, weight: .regular, design: .serif))
                     case .code(let string):
                         CodeBlock(string)
+                            .fixedSize()
                     case .twitter:
                         TwitterView()
                     case .link(let string):
@@ -36,7 +37,7 @@ struct PostView: View {
                         Text("Could not render this content.").italic()
                     }
                 }
-            }.padding()
+            }.readableGuidePadding()
         }.navigationTitle("")
 
     }

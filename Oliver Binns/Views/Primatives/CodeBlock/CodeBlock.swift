@@ -23,7 +23,7 @@ struct CodeBlock: View {
 
     static func regexSearch(string: String) -> String? {
         let range = NSRange(location: 0, length: (string as NSString).length)
-        let regex = try? NSRegularExpression(pattern: "(?<=<code lang=\"swift\" class=\"language-swift\">).*?(?=</code>)",
+        let regex = try? NSRegularExpression(pattern: "(?<=<code lang=\".*\" class=\".*\">).*?(?=</code>)",
                                              options: [.dotMatchesLineSeparators])
         return regex?.matches(in: string, range: range).map { match in
             let start = string.index(string.startIndex, offsetBy: match.range.location)

@@ -30,15 +30,15 @@ final class Post: Decodable, Identifiable {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         id = try values.decode(Int.self, forKey: .id)
 
-        title = try values.decode(Content.self, forKey: .title).rendered
+        title = try values.decode(RenderedContent.self, forKey: .title).rendered
 
         link = try values.decode(URL.self, forKey: .link)
         imageURL = try? values.decode(URL.self, forKey: .imageURL)
 
         date = try values.decode(Date.self, forKey: .date)
 
-        let excerptHTML = try values.decode(Content.self, forKey: .excerpt).rendered
-        let contentHTML = try values.decode(Content.self, forKey: .content).rendered
+        let excerptHTML = try values.decode(RenderedContent.self, forKey: .excerpt).rendered
+        let contentHTML = try values.decode(RenderedContent.self, forKey: .content).rendered
 
         guard let queue = decoder.userInfo[.dispatchQueue] as? DispatchQueue,
               let group = decoder.userInfo[.dispatchGroup] as? DispatchGroup else {
@@ -65,6 +65,6 @@ final class Post: Decodable, Identifiable {
         }
     }
 }
-struct Content: Decodable {
+struct RenderedContent: Decodable {
     let rendered: String
 }

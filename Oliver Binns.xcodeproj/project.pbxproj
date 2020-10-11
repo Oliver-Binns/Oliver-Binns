@@ -35,6 +35,7 @@
 		07C0F54C250CE5E1000B0123 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C0F54B250CE5E1000B0123 /* Post.swift */; };
 		07E8C0612533283200A39ADF /* Sourceful in Frameworks */ = {isa = PBXBuildFile; productRef = 07E8C0602533283200A39ADF /* Sourceful */; };
 		07E8C06725332B1B00A39ADF /* CodeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E8C06625332B1B00A39ADF /* CodeBlock.swift */; };
+		07E8C06C253332C600A39ADF /* ReadableGuidePadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E8C06B253332C600A39ADF /* ReadableGuidePadding.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +68,7 @@
 		07C0F548250CE4CC000B0123 /* URLRequest+Blog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Blog.swift"; sourceTree = "<group>"; };
 		07C0F54B250CE5E1000B0123 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		07E8C06625332B1B00A39ADF /* CodeBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeBlock.swift; sourceTree = "<group>"; };
+		07E8C06B253332C600A39ADF /* ReadableGuidePadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadableGuidePadding.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 		07C0F532250CE48B000B0123 /* Oliver Binns */ = {
 			isa = PBXGroup;
 			children = (
+				07E8C06A253332BA00A39ADF /* Modifiers */,
 				0761F4E3250E1AA600D8D604 /* Views */,
 				0761F4D8250CFA2600D8D604 /* Extensions */,
 				07C0F54A250CE5D8000B0123 /* Model */,
@@ -194,6 +197,14 @@
 				07E8C06625332B1B00A39ADF /* CodeBlock.swift */,
 			);
 			path = CodeBlock;
+			sourceTree = "<group>";
+		};
+		07E8C06A253332BA00A39ADF /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				07E8C06B253332C600A39ADF /* ReadableGuidePadding.swift */,
+			);
+			path = Modifiers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,6 +290,7 @@
 				07B149222531D88D00281920 /* AboutView.swift in Sources */,
 				07C0F534250CE48B000B0123 /* Oliver_BinnsApp.swift in Sources */,
 				07B149432531E4BE00281920 /* PostView.swift in Sources */,
+				07E8C06C253332C600A39ADF /* ReadableGuidePadding.swift in Sources */,
 				07C0F54C250CE5E1000B0123 /* Post.swift in Sources */,
 				07C0F549250CE4CC000B0123 /* URLRequest+Blog.swift in Sources */,
 				07B149512531F41300281920 /* LinkView.swift in Sources */,

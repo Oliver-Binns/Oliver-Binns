@@ -30,6 +30,7 @@ struct LinkView: View {
                 }
             }
             .padding()
+            .frame(maxWidth: .infinity)
             .border(Color.black)
         }
     }
