@@ -4,9 +4,10 @@
 //
 //  Created by Laptop 3 on 12/09/2020.
 //
+import SwiftSoup
 import SwiftUI
 
-final class Post: Decodable, Identifiable {
+final class Post: NSObject, Decodable, Identifiable {
     let id: Int
 
     let title: String
@@ -39,6 +40,7 @@ final class Post: Decodable, Identifiable {
 
         let excerptHTML = try values.decode(RenderedContent.self, forKey: .excerpt).rendered
         let contentHTML = try values.decode(RenderedContent.self, forKey: .content).rendered
+        super.init()
 
         guard let queue = decoder.userInfo[.dispatchQueue] as? DispatchQueue,
               let group = decoder.userInfo[.dispatchGroup] as? DispatchGroup else {
@@ -53,13 +55,18 @@ final class Post: Decodable, Identifiable {
                                                           options: [.documentType: NSAttributedString.DocumentType.html],
                                                           documentAttributes: nil)
 
-            self.content = contentHTML.components(separatedBy: "\n\n\n").map {
+            let xml = try? SwiftSoup.parse(contentHTML)
+            self.content = xml?.body()?.children().compactMap {
+                try? PostContent.mapContent(element: $0)
+            } ?? []
+
+            /*self.content = contentHTML.components(separatedBy: "\n\n\n").map {
                 $0.trimmingCharacters(in: .whitespacesAndNewlines)
             }.filter {
                 !$0.isEmpty
             }.map {
                 PostContent.mapContent(string: $0)
-            }
+            }*/
 
             group.leave()
         }

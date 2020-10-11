@@ -38,6 +38,7 @@
 		07E8C06C253332C600A39ADF /* ReadableGuidePadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E8C06B253332C600A39ADF /* ReadableGuidePadding.swift */; };
 		07E8C0702533368600A39ADF /* SourceCodeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E8C06F2533368600A39ADF /* SourceCodeTextView.swift */; };
 		07E8C073253358FC00A39ADF /* Figure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E8C072253358FC00A39ADF /* Figure.swift */; };
+		07E8C07C25337AEE00A39ADF /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 07E8C07B25337AEE00A39ADF /* SwiftSoup */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +82,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07E8C0612533283200A39ADF /* Sourceful in Frameworks */,
+				07E8C07C25337AEE00A39ADF /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,6 +233,7 @@
 			name = "Oliver Binns";
 			packageProductDependencies = (
 				07E8C0602533283200A39ADF /* Sourceful */,
+				07E8C07B25337AEE00A39ADF /* SwiftSoup */,
 			);
 			productName = "Oliver Binns";
 			productReference = 07C0F530250CE48B000B0123 /* Oliver Binns.app */;
@@ -261,6 +264,7 @@
 			mainGroup = 07C0F527250CE48B000B0123;
 			packageReferences = (
 				07E8C05F2533283200A39ADF /* XCRemoteSwiftPackageReference "Sourceful" */,
+				07E8C07A25337AEE00A39ADF /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 			);
 			productRefGroup = 07C0F531250CE48B000B0123 /* Products */;
 			projectDirPath = "";
@@ -514,6 +518,14 @@
 				kind = branch;
 			};
 		};
+		07E8C07A25337AEE00A39ADF /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -521,6 +533,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 07E8C05F2533283200A39ADF /* XCRemoteSwiftPackageReference "Sourceful" */;
 			productName = Sourceful;
+		};
+		07E8C07B25337AEE00A39ADF /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 07E8C07A25337AEE00A39ADF /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -8,10 +8,13 @@ import Foundation
 import SwiftUI
 
 struct LinkView: View {
-    var htmlString: String
+    var imageURL: URL?
+    var title: String
+    var bodyText: String
+    var url: URL
 
     var body: some View {
-        Link(destination: linkURL) {
+        Link(destination: url) {
             HStack(alignment: .top, spacing: 16) {
                 if imageURL != nil {
                     AsyncImage(
@@ -23,9 +26,9 @@ struct LinkView: View {
                     .frame(width: 100)
                 }
                 VStack(alignment: .leading, spacing: 8) {
-                    Text(linkTitle ?? "no title")
+                    Text(title)
                         .font(.headline)
-                    Text(linkBody ?? "")
+                    Text(bodyText)
                         .font(.caption)
                 }
                 Spacer()
@@ -35,58 +38,10 @@ struct LinkView: View {
             .border(Color.primary)
         }
     }
-
-    var urls: [URL] {
-        let types: NSTextCheckingResult.CheckingType = .link
-        let detector = try! NSDataDetector(types: types.rawValue)
-        return detector.matches(in: htmlString,
-                                options: .reportCompletion,
-                                range: NSMakeRange(0, htmlString.count))
-            .compactMap {
-                $0.url
-            }
-    }
-
-    var linkURL: URL {
-        urls.first!
-    }
-
-    var imageURL: URL? {
-        urls.count > 1 ? urls[1] : nil
-    }
-
-    var linkText: [String] {
-        htmlString.replacingOccurrences(of: "<[^>]+>",
-                                        with: "",
-                                        options: .regularExpression,
-                                        range: nil).split(separator: "\t", maxSplits: 1)
-            .map(String.init)
-            .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
-            .filter { !$0.isEmpty }
-    }
-
-    var linkTitle: String? {
-        regexSearch(cssClass: "vlp-link-title")
-    }
-
-    var linkBody: String? {
-        regexSearch(cssClass: "vlp-link-summary")
-    }
-
-    func regexSearch(cssClass: String) -> String? {
-        let range = NSRange(location: 0, length: (htmlString as NSString).length)
-        let regex = try? NSRegularExpression(pattern: "(?<=<div class=\"\(cssClass)\">).*?(?=</div>)",
-                                             options: [.dotMatchesLineSeparators])
-        return regex?.matches(in: htmlString, range: range).map { match in
-            let start = htmlString.index(htmlString.startIndex, offsetBy: match.range.location)
-            let end = htmlString.index(start, offsetBy: match.range.length)
-            return String(htmlString[start..<end]).trimmingCharacters(in: .whitespacesAndNewlines)
-        }.first
-    }
 }
 
 struct LinkView_Previews: PreviewProvider {
     static var previews: some View {
-        LinkView(htmlString: "")
+        EmptyView()
     }
 }
