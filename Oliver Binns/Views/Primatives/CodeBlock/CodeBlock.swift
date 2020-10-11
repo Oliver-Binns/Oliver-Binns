@@ -4,26 +4,32 @@
 //
 //  Created by Laptop 3 on 11/10/2020.
 //
-import Sourceful
 import SwiftUI
 
-// Required since Sourceful declares a similar typealias to UIView.
-typealias View = SwiftUI.View
-
 struct CodeBlock: View {
+    var title: String?
     @State var code: String
+    @State private var desiredHeight: CGFloat = 200
 
     init(_ string: String) {
-        _code = State(initialValue: Self.regexSearch(string: string) ?? "")
+        title = Self.regexSearch(string: string, pattern: "(?<=title=\").*?(?=\")")
+        _code = State(initialValue: Self.regexSearch(string: string,
+                                                     pattern: "(?<=<code lang=\"swift\" class=\"language-swift\">).*?(?=</code>)") ?? "")
     }
 
     var body: some View {
-        SourceCodeTextEditor(text: $code)
+        VStack {
+            if title != nil {
+                Text(title!).font(.headline)
+            }
+            SourceCodeTextView(text: $code, desiredHeight: $desiredHeight)
+                .frame(height: desiredHeight)
+        }
     }
 
-    static func regexSearch(string: String) -> String? {
+    static func regexSearch(string: String, pattern: String) -> String? {
         let range = NSRange(location: 0, length: (string as NSString).length)
-        let regex = try? NSRegularExpression(pattern: "(?<=<code lang=\".*\" class=\".*\">).*?(?=</code>)",
+        let regex = try? NSRegularExpression(pattern: pattern,
                                              options: [.dotMatchesLineSeparators])
         return regex?.matches(in: string, range: range).map { match in
             let start = string.index(string.startIndex, offsetBy: match.range.location)

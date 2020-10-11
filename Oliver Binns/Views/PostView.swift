@@ -26,7 +26,8 @@ struct PostView: View {
                             .font(.system(size: 17, weight: .regular, design: .serif))
                     case .code(let string):
                         CodeBlock(string)
-                            .fixedSize()
+                    case .figure(let string):
+                        Figure(string)
                     case .twitter:
                         TwitterView()
                     case .link(let string):
@@ -34,7 +35,11 @@ struct PostView: View {
                     case .horizontalRule:
                         Divider()
                     default:
-                        Text("Could not render this content.").italic()
+                        HStack {
+                            Image(systemName: "exclamationmark.triangle.fill")
+                                .foregroundColor(.yellow)
+                            Text("Could not render this content.").italic()
+                        }
                     }
                 }
             }.readableGuidePadding()

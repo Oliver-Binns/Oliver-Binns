@@ -36,6 +36,8 @@
 		07E8C0612533283200A39ADF /* Sourceful in Frameworks */ = {isa = PBXBuildFile; productRef = 07E8C0602533283200A39ADF /* Sourceful */; };
 		07E8C06725332B1B00A39ADF /* CodeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E8C06625332B1B00A39ADF /* CodeBlock.swift */; };
 		07E8C06C253332C600A39ADF /* ReadableGuidePadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E8C06B253332C600A39ADF /* ReadableGuidePadding.swift */; };
+		07E8C0702533368600A39ADF /* SourceCodeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E8C06F2533368600A39ADF /* SourceCodeTextView.swift */; };
+		07E8C073253358FC00A39ADF /* Figure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E8C072253358FC00A39ADF /* Figure.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +71,8 @@
 		07C0F54B250CE5E1000B0123 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		07E8C06625332B1B00A39ADF /* CodeBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeBlock.swift; sourceTree = "<group>"; };
 		07E8C06B253332C600A39ADF /* ReadableGuidePadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadableGuidePadding.swift; sourceTree = "<group>"; };
+		07E8C06F2533368600A39ADF /* SourceCodeTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceCodeTextView.swift; sourceTree = "<group>"; };
+		07E8C072253358FC00A39ADF /* Figure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Figure.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +122,7 @@
 				0761F4DD250CFE3800D8D604 /* HTMLText.swift */,
 				07B1494D2531F1C800281920 /* TwitterView.swift */,
 				07B149502531F41300281920 /* LinkView.swift */,
+				07E8C072253358FC00A39ADF /* Figure.swift */,
 			);
 			path = Primatives;
 			sourceTree = "<group>";
@@ -195,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				07E8C06625332B1B00A39ADF /* CodeBlock.swift */,
+				07E8C06F2533368600A39ADF /* SourceCodeTextView.swift */,
 			);
 			path = CodeBlock;
 			sourceTree = "<group>";
@@ -291,6 +297,7 @@
 				07C0F534250CE48B000B0123 /* Oliver_BinnsApp.swift in Sources */,
 				07B149432531E4BE00281920 /* PostView.swift in Sources */,
 				07E8C06C253332C600A39ADF /* ReadableGuidePadding.swift in Sources */,
+				07E8C073253358FC00A39ADF /* Figure.swift in Sources */,
 				07C0F54C250CE5E1000B0123 /* Post.swift in Sources */,
 				07C0F549250CE4CC000B0123 /* URLRequest+Blog.swift in Sources */,
 				07B149512531F41300281920 /* LinkView.swift in Sources */,
@@ -306,6 +313,7 @@
 				0761F4E0250D00F400D8D604 /* NSAttributedString.swift in Sources */,
 				0761F4DE250CFE3800D8D604 /* HTMLText.swift in Sources */,
 				07E8C06725332B1B00A39ADF /* CodeBlock.swift in Sources */,
+				07E8C0702533368600A39ADF /* SourceCodeTextView.swift in Sources */,
 				0761F4DA250CFA2F00D8D604 /* JSONDecoder.swift in Sources */,
 				0794BE48250E900300CAEA95 /* KeyedDecodingContainer.swift in Sources */,
 			);
