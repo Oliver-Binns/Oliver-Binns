@@ -28,10 +28,11 @@ struct LinkView: View {
                     Text(linkBody ?? "")
                         .font(.caption)
                 }
+                Spacer()
             }
             .padding()
             .frame(maxWidth: .infinity)
-            .border(Color.black)
+            .border(Color.primary)
         }
     }
 
