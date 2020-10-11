@@ -17,7 +17,8 @@ struct PostHeader: View {
                     url: post.imageURL!,
                     placeholder: { Image(systemName: "doc").resizable() },
                     image: { Image(uiImage: $0).resizable() }
-                ).aspectRatio(1, contentMode: .fit)
+                )
+                .aspectRatio(contentMode: .fit)
             }
             Text(post.title)
                 .font(.title)

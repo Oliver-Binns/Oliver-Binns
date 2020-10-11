@@ -14,6 +14,8 @@ enum PostContent {
     case body(NSAttributedString)
     case image(URL)
 
+    case code(String)
+
     case horizontalRule
 
     case link(String)
@@ -46,6 +48,8 @@ extension PostContent {
             return .link(string)
         } else if string.hasPrefix("<hr") {
             return .horizontalRule
+        } else if string.hasPrefix("<pre") && string.hasSuffix("</pre>") {
+            return .code(string)
         }
         return .cannotRender
     }

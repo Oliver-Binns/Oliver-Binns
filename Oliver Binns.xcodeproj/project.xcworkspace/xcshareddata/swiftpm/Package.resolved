@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Sourceful",
+        "repositoryURL": "https://github.com/twostraws/Sourceful",
+        "state": {
+          "branch": "main",
+          "revision": "ef82b07261dceeedb6e48f1ecd4f4305b5cd10f8",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

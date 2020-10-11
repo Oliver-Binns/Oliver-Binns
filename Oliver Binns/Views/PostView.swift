@@ -4,7 +4,6 @@
 //
 //  Created by Laptop 3 on 10/10/2020.
 //
-
 import SwiftUI
 
 struct PostView: View {
@@ -20,9 +19,13 @@ struct PostView: View {
                         Text(string).font(.title)
                     case .heading2(let string):
                         Text(string).font(.title2)
+                    case .heading3(let string):
+                        Text(string).font(.title3)
                     case .body(let string):
                         AttributedText(attributedText: string)
                             .font(.system(size: 17, weight: .regular, design: .serif))
+                    case .code(let string):
+                        CodeBlock(string)
                     case .twitter:
                         TwitterView()
                     case .link(let string):

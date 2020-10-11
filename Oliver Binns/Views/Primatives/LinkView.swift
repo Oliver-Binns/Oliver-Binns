@@ -12,7 +12,7 @@ struct LinkView: View {
 
     var body: some View {
         Link(destination: linkURL) {
-            HStack(alignment: .center) {
+            HStack(alignment: .top, spacing: 16) {
                 if imageURL != nil {
                     AsyncImage(
                         url: imageURL!,
@@ -20,16 +20,17 @@ struct LinkView: View {
                         image: { Image(uiImage: $0).resizable() }
                     )
                     .aspectRatio(contentMode: .fit)
-                    .frame(maxWidth: 150)
+                    .frame(width: 100)
                 }
                 VStack(alignment: .leading, spacing: 8) {
                     Text(linkTitle ?? "no title")
-                        .font(.title)
+                        .font(.headline)
                     Text(linkBody ?? "")
+                        .font(.caption)
                 }
-                .layoutPriority(1)
-                .padding()
-            }.border(Color.black)
+            }
+            .padding()
+            .border(Color.black)
         }
     }
 

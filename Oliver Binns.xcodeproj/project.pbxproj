@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -33,6 +33,8 @@
 		07C0F547250CE4C3000B0123 /* BlogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C0F546250CE4C3000B0123 /* BlogService.swift */; };
 		07C0F549250CE4CC000B0123 /* URLRequest+Blog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C0F548250CE4CC000B0123 /* URLRequest+Blog.swift */; };
 		07C0F54C250CE5E1000B0123 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C0F54B250CE5E1000B0123 /* Post.swift */; };
+		07E8C0612533283200A39ADF /* Sourceful in Frameworks */ = {isa = PBXBuildFile; productRef = 07E8C0602533283200A39ADF /* Sourceful */; };
+		07E8C06725332B1B00A39ADF /* CodeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E8C06625332B1B00A39ADF /* CodeBlock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +66,7 @@
 		07C0F546250CE4C3000B0123 /* BlogService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogService.swift; sourceTree = "<group>"; };
 		07C0F548250CE4CC000B0123 /* URLRequest+Blog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Blog.swift"; sourceTree = "<group>"; };
 		07C0F54B250CE5E1000B0123 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		07E8C06625332B1B00A39ADF /* CodeBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeBlock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07E8C0612533283200A39ADF /* Sourceful in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,6 +111,7 @@
 		07B1492A2531D93E00281920 /* Primatives */ = {
 			isa = PBXGroup;
 			children = (
+				07E8C06525332B0600A39ADF /* CodeBlock */,
 				07B1492F2531DF7700281920 /* AsyncImage */,
 				0761F4DD250CFE3800D8D604 /* HTMLText.swift */,
 				07B1494D2531F1C800281920 /* TwitterView.swift */,
@@ -183,6 +188,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		07E8C06525332B0600A39ADF /* CodeBlock */ = {
+			isa = PBXGroup;
+			children = (
+				07E8C06625332B1B00A39ADF /* CodeBlock.swift */,
+			);
+			path = CodeBlock;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -199,6 +212,9 @@
 			dependencies = (
 			);
 			name = "Oliver Binns";
+			packageProductDependencies = (
+				07E8C0602533283200A39ADF /* Sourceful */,
+			);
 			productName = "Oliver Binns";
 			productReference = 07C0F530250CE48B000B0123 /* Oliver Binns.app */;
 			productType = "com.apple.product-type.application";
@@ -226,6 +242,9 @@
 				Base,
 			);
 			mainGroup = 07C0F527250CE48B000B0123;
+			packageReferences = (
+				07E8C05F2533283200A39ADF /* XCRemoteSwiftPackageReference "Sourceful" */,
+			);
 			productRefGroup = 07C0F531250CE48B000B0123 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -274,6 +293,7 @@
 				07B149472531EAF400281920 /* PostContent.swift in Sources */,
 				0761F4E0250D00F400D8D604 /* NSAttributedString.swift in Sources */,
 				0761F4DE250CFE3800D8D604 /* HTMLText.swift in Sources */,
+				07E8C06725332B1B00A39ADF /* CodeBlock.swift in Sources */,
 				0761F4DA250CFA2F00D8D604 /* JSONDecoder.swift in Sources */,
 				0794BE48250E900300CAEA95 /* KeyedDecodingContainer.swift in Sources */,
 			);
@@ -464,6 +484,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		07E8C05F2533283200A39ADF /* XCRemoteSwiftPackageReference "Sourceful" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/Sourceful";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		07E8C0602533283200A39ADF /* Sourceful */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 07E8C05F2533283200A39ADF /* XCRemoteSwiftPackageReference "Sourceful" */;
+			productName = Sourceful;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 07C0F528250CE48B000B0123 /* Project object */;
 }
