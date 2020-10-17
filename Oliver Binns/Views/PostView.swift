@@ -11,13 +11,14 @@ struct PostView: View {
 
     var body: some View {
         ScrollView(.vertical) {
-            VStack(alignment: .leading, spacing: 16) {
+            VStack(alignment: .leading, spacing: 8) {
                 PostHeader(post: post)
                 ForEach(0..<post.content.count, id: \.self) { index in
                     viewForContent(post.content[index])
-                }
-            }.readableGuidePadding()
-        }.navigationTitle("")
+                }.padding(.bottom, 16)
+            }
+            .readableGuidePadding()
+        }
     }
 
     @ViewBuilder
@@ -34,6 +35,8 @@ struct PostView: View {
                 .font(.system(size: 17, weight: .regular, design: .serif))
         case .code(let title, let content):
             CodeBlock(title: title, code: content)
+        case .slider(let caption, let firstImage, let secondImage):
+            Slider(caption: caption, firstImage: firstImage, secondImage: secondImage)
         case .figure(let caption, let url):
             Figure(caption: caption, url: url)
         case .twitter:
@@ -42,6 +45,8 @@ struct PostView: View {
             LinkView(imageURL: imageURL,
                      title: title, bodyText: body,
                      url: url)
+        case .blank:
+            EmptyView()
         case .column(let columns):
             HStack(alignment: .top) {
                 ForEach(0..<columns.count, id: \.self) { index in

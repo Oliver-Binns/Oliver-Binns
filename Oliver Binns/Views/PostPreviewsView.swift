@@ -9,26 +9,34 @@ import SwiftUI
 
 struct PostPreviewsView: View {
     @State var posts: [Post] = []
+    @State var selectedItem: Int?
     @State private var desiredHeight: [CGFloat] = []
 
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+
     var body: some View {
-        List(0..<posts.count, id: \.self) { index in
-            ZStack {
-                VStack(alignment: .leading, spacing: 8) {
-                    PostHeader(post: posts[index])
-                    AttributedText(attributedText: posts[index].excerpt)
-                        .font(.system(size: 17, weight: .regular, design: .serif))
-                }
-                NavigationLink(destination: PostView(post: posts[index])) {
-                    EmptyView()
+        ScrollView {
+            ForEach(posts, id: \.self) { post in
+                NavigationLink(destination: PostView(post: post),
+                               tag: post.id, selection: $selectedItem) {
+                    VStack(alignment: .leading, spacing: 8) {
+                        PostHeader(post: post)
+                        AttributedText(attributedText: post.excerpt)
+                            .font(.system(size: 17, weight: .regular, design: .serif))
+                    }.padding()
                 }.buttonStyle(PlainButtonStyle())
+                Divider()
             }
         }
         .navigationBarTitle("Blog")
         .onAppear {
+            guard posts.isEmpty else { return }
             BlogService.getPosts(client: .init()) { result in
                 _ = result.map { posts in
                     self.desiredHeight = posts.map { _ in 0 }
+                    if horizontalSizeClass == .regular && selectedItem == nil {
+                        self.selectedItem = posts.first?.id
+                    }
                     self.posts = posts
                 }
             }

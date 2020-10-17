@@ -18,12 +18,15 @@ enum PostContent {
     case figure(String?, URL)
     case code(String?, String)
 
+    case slider(String?, URL, URL)
+
     case horizontalRule
 
     case link(URL?, String, String, URL)
     case twitter
 
     case column([PostContent])
+    case blank
 
     case cannotRender
 }
@@ -34,9 +37,12 @@ extension PostContent {
             return try .heading2(element.text())
         case "h3":
             return try .heading3(element.text())
-        case "ul", "ol", "p":
+        case "ul", "ol", "p", "blockquote":
             guard let string = try? NSMutableAttributedString(data: Data(element.html().utf8),
-                                                              options: [.documentType: NSAttributedString.DocumentType.html],
+                                                              options: [
+                                                                .documentType: NSAttributedString.DocumentType.html,
+                                                                .characterEncoding: String.Encoding.utf8.rawValue
+                                                              ],
                                                               documentAttributes: nil) else {
                 return cannotRender
             }
@@ -54,6 +60,16 @@ extension PostContent {
                          try element.select("code").text())
         case "div":
             switch try element.className() {
+            case "wp-block-group":
+                let imageURLs = try element.select("img")
+                    .compactMap { try? $0.attr("src") }
+                    .compactMap { URL(string: $0) }
+                guard imageURLs.count == 2 else {
+                    return .cannotRender
+                }
+                let text = try? element.select("figcaption").text()
+                return .slider(text,
+                               imageURLs.first!, imageURLs.last!)
             case "wp-block-columns":
                 return .column(element.children()
                                 .compactMap { $0.children().first() }
@@ -85,6 +101,8 @@ extension PostContent {
                 return .cannotRender
             }
             return .twitter
+        case "script":
+            return .blank
         default:
             return .cannotRender
         }

@@ -13,7 +13,7 @@ private struct ReadableGuidePadding: ViewModifier {
             Spacer()
             content
                 .frame(maxWidth: 672)
-                .padding()
+                .padding(.horizontal)
             Spacer()
         }
     }

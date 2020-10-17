@@ -42,6 +42,7 @@ struct HTMLText: UIViewRepresentable {
                                                     height: UIView.layoutFittingCompressedSize.height),
                                            withHorizontalFittingPriority: .required,
                                            verticalFittingPriority: .fittingSizeLevel)
+            guard size.height != self.desiredHeight else { return }
             self.desiredHeight = size.height
         }
     }
