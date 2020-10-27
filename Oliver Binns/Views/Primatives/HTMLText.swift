@@ -120,6 +120,7 @@ fileprivate final class HTMLLabel: UILabel {
                 return
             }
             let string = NSMutableAttributedString(attributedString: attributedText)
+            string.removeAttribute(.foregroundColor, range: range)
             string.addAttribute(.foregroundColor, value: color.cgColor, range: range)
             self.attributedText = string
          }

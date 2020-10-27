@@ -12,9 +12,12 @@ struct LinkView: View {
     var title: String
     var bodyText: String
     var url: URL
+    @State private var shouldDisplayLink: Bool = false
 
     var body: some View {
-        Link(destination: url) {
+        Button(action: {
+            shouldDisplayLink = true
+        }, label: {
             HStack(alignment: .top, spacing: 16) {
                 if imageURL != nil {
                     AsyncImage(
@@ -36,6 +39,9 @@ struct LinkView: View {
             .padding()
             .frame(maxWidth: .infinity)
             .border(Color.primary)
+        })
+        .sheet(isPresented: $shouldDisplayLink) {
+            SafariView(url: url)
         }
     }
 }
