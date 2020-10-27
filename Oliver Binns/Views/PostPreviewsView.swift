@@ -15,15 +15,16 @@ struct PostPreviewsView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
 
     var body: some View {
-        ScrollView {
+        ScrollView(.vertical) {
             ForEach(posts, id: \.self) { post in
                 NavigationLink(destination: PostView(post: post),
                                tag: post.id, selection: $selectedItem) {
                     VStack(alignment: .leading, spacing: 8) {
-                        PostHeader(post: post)
+                        PostHeader(post: post, contentMode: .fill)
                         AttributedText(attributedText: post.excerpt)
                             .font(.system(size: 17, weight: .regular, design: .serif))
-                    }.padding()
+                    }
+                    .padding()
                 }.buttonStyle(PlainButtonStyle())
                 Divider()
             }

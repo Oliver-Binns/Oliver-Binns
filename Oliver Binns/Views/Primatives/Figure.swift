@@ -15,7 +15,12 @@ struct Figure: View {
             if url != nil {
                 AsyncImage(
                     url: url!,
-                    placeholder: { Image(systemName: "doc").resizable() },
+                    placeholder: {
+                        VStack {
+                            ActivityIndicator(isAnimating: .constant(true),
+                                              style: .large)
+                        }
+                    },
                     image: { Image(uiImage: $0).resizable() }
                 )
                 .aspectRatio(contentMode: .fit)

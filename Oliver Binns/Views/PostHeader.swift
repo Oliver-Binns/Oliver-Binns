@@ -9,16 +9,19 @@ import SwiftUI
 
 struct PostHeader: View {
     @State var post: Post
+    var contentMode: ContentMode = .fit
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             if post.imageURL != nil {
                 AsyncImage(
                     url: post.imageURL!,
-                    placeholder: { Image(systemName: "doc").resizable() },
+                    placeholder: {
+                        Image("Placeholder").resizable()
+                    },
                     image: { Image(uiImage: $0).resizable() }
                 )
-                .aspectRatio(contentMode: .fit)
+                .aspectRatio(contentMode: contentMode)
             }
             Text(post.title)
                 .font(.title)

@@ -64,7 +64,7 @@ public struct SourceCodeTextView: _ViewRepresentable {
     public init(
         text: Binding<String>,
         desiredHeight: Binding<CGFloat>,
-        cusotmization: Customization = Customization(
+        customization: Customization = Customization(
             didChangeText: {_ in },
             insertionPointColor: { Sourceful.Color.white },
             lexerForSource: { _ in SwiftLexer() },
@@ -74,7 +74,7 @@ public struct SourceCodeTextView: _ViewRepresentable {
     ) {
         self._text = text
         self._desiredHeight = desiredHeight
-        self.custom = cusotmization
+        self.custom = customization
     }
 
     public func makeCoordinator() -> Coordinator {
