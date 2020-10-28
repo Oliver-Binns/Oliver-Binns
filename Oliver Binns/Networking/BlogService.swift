@@ -4,10 +4,13 @@
 //
 //  Created by Laptop 3 on 12/09/2020.
 //
-
 import Foundation
 
 struct BlogService {
+    enum BlogError: Error {
+        case notFound
+    }
+
     static func getPosts(client: NetworkClient,
                          completion: @escaping (Result<[Post], Error>) -> Void) {
         client.executeRequest(request: .posts) {
@@ -37,9 +40,16 @@ struct BlogService {
         }
     }
 
-    static func getPost(id: String,
+    static func getPost(slug: String,
                         client: NetworkClient,
                         completion: @escaping (Result<Post, Error>) -> Void) {
-        //client.executeRequest(request: .posts, completion: <#T##(Result<Data, Error>) -> Void#>)
+        getPosts(client: client) {
+            completion($0.flatMap { success in
+                guard let post = success.first(where: { $0.slug == slug }) else {
+                    return .failure(BlogError.notFound)
+                }
+                return .success(post)
+            })
+        }
     }
 }

@@ -10,13 +10,6 @@ struct ContentView: View {
     var body: some View {
         TabView {
             NavigationView {
-                AboutView().readableGuidePadding()
-            }.tabItem {
-                Image(systemName: "person.fill")
-                Text("Profile")
-            }
-            .navigationViewStyle(StackNavigationViewStyle())
-            NavigationView {
                 PostPreviewsView()
             }
             .navigationViewStyle(DoubleColumnNavigationViewStyle())
@@ -24,6 +17,14 @@ struct ContentView: View {
                 Image(systemName: "doc.text.fill")
                 Text("Blog")
             }
+            ScrollView {
+                AboutView().readableGuidePadding()
+            }
+            .tabItem {
+                Image(systemName: "info.circle.fill")
+                Text("About")
+            }
+            .navigationViewStyle(StackNavigationViewStyle())
         }
     }
 }

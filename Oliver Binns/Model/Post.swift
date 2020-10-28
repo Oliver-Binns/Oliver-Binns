@@ -9,6 +9,7 @@ import SwiftUI
 
 final class Post: NSObject, Decodable, Identifiable {
     let id: Int
+    let slug: String
 
     let title: String
     private(set) var excerpt: NSAttributedString?
@@ -21,7 +22,7 @@ final class Post: NSObject, Decodable, Identifiable {
     var content: [PostContent] = []
 
     enum CodingKeys: String, CodingKey {
-        case id, link, title, excerpt
+        case id, slug, link, title, excerpt
         case date = "date_gmt"
         case imageURL = "jetpack_featured_media_url"
         case content
@@ -30,6 +31,7 @@ final class Post: NSObject, Decodable, Identifiable {
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         id = try values.decode(Int.self, forKey: .id)
+        slug = try values.decode(String.self, forKey: .slug)
 
         title = try values.decode(RenderedContent.self, forKey: .title).rendered
 
@@ -59,14 +61,6 @@ final class Post: NSObject, Decodable, Identifiable {
             self.content = xml?.body()?.children().compactMap {
                 try? PostContent.mapContent(element: $0)
             } ?? []
-
-            /*self.content = contentHTML.components(separatedBy: "\n\n\n").map {
-                $0.trimmingCharacters(in: .whitespacesAndNewlines)
-            }.filter {
-                !$0.isEmpty
-            }.map {
-                PostContent.mapContent(string: $0)
-            }*/
 
             group.leave()
         }
