@@ -18,7 +18,9 @@ struct PostView: View {
                 }.padding(.bottom, 16)
             }
             .readableGuidePadding()
-        }
+        }.navigationBarItems(trailing: ShareButton(activityItems: [post.link]) {
+            Image(systemName: "square.and.arrow.up")
+        })
     }
 
     @ViewBuilder

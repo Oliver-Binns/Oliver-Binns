@@ -13,7 +13,9 @@ struct AttributedText: View {
     @State private var url: URL?
 
     var body: some View {
-        HTMLText(attributedString: $attributedText, desiredHeight: $desiredHeight, linkPressed: {
+        HTMLText(attributedString: $attributedText,
+                 desiredHeight: $desiredHeight,
+                 linkPressed: {
             self.url = $0
         })
         .frame(height: desiredHeight)

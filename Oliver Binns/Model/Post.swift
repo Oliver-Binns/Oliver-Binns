@@ -14,18 +14,17 @@ final class Post: NSObject, Decodable, Identifiable {
     let title: String
     private(set) var excerpt: NSAttributedString?
 
-    let link: URL?
+    let link: URL
     let imageURL: URL?
 
-    let date: Date
+    let publishedDate: Date
 
     var content: [PostContent] = []
 
     enum CodingKeys: String, CodingKey {
-        case id, slug, link, title, excerpt
-        case date = "date_gmt"
+        case id, slug, link, title, excerpt, content
+        case publishedDate = "date_gmt"
         case imageURL = "jetpack_featured_media_url"
-        case content
     }
 
     init(from decoder: Decoder) throws {
@@ -59,7 +58,7 @@ final class Post: NSObject, Decodable, Identifiable {
 
             let xml = try? SwiftSoup.parse(contentHTML)
             self.content = xml?.body()?.children().compactMap {
-                try? PostContent.mapContent(element: $0)
+                try? PostContent(element: $0)
             } ?? []
 
             group.leave()

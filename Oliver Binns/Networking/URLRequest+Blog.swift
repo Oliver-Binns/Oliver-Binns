@@ -13,9 +13,18 @@ extension URLRequest {
         .init(endpoint: "posts")
     }
 
-    init(endpoint: String...) {
-        guard let url = URL(string: Self.baseURL + endpoint.joined(separator: "/")) else {
-            preconditionFailure("Expected a valid URL")
+    static func post(withSlug slug: String) -> URLRequest {
+        .init(endpoint: "posts",
+              queryItems: [URLQueryItem(name: "slug", value: slug)])
+    }
+
+    init(endpoint: String..., queryItems: [URLQueryItem]? = nil) {
+        guard var urlComponents = URLComponents(string: Self.baseURL + endpoint.joined(separator: "/")) else {
+            preconditionFailure("Expected a valid URL string")
+        }
+        urlComponents.queryItems = queryItems
+        guard let url = urlComponents.url else {
+            preconditionFailure("Expected a valid set of query strings")
         }
         self.init(url: url)
     }

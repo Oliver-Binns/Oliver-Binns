@@ -7,9 +7,5 @@
 		<string>appclips:oliverbinns.co.uk</string>
 		<string>appclips:www.oliverbinns.co.uk</string>
 	</array>
-	<key>com.apple.developer.parent-application-identifiers</key>
-	<array>
-		<string>$(AppIdentifierPrefix)uk.co.oliverbinns.oliverbinns</string>
-	</array>
 </dict>
 </plist>

@@ -31,12 +31,14 @@ enum PostContent {
     case cannotRender
 }
 extension PostContent {
-    static func mapContent(element: Element) throws -> PostContent {
+    init(element: Element) throws {
         switch element.tagName() {
+        case "h1":
+            self = try .heading1(element.text())
         case "h2":
-            return try .heading2(element.text())
+            self = try .heading2(element.text())
         case "h3":
-            return try .heading3(element.text())
+            self = try .heading3(element.text())
         case "ul", "ol", "p", "blockquote":
             guard let string = try? NSMutableAttributedString(data: Data(element.html().utf8),
                                                               options: [
@@ -44,19 +46,19 @@ extension PostContent {
                                                                 .characterEncoding: String.Encoding.utf8.rawValue
                                                               ],
                                                               documentAttributes: nil) else {
-                return cannotRender
+                self = .cannotRender
+                return
             }
-            return .body(string)
+            self = .body(string)
         case "figure":
             guard let src = try? element.select("img").attr("src"),
                   let url = URL(string: src) else {
-                return .cannotRender
+                self = .cannotRender
+                return
             }
-
-            return .figure(try? element.select("figcaption").text(), url)
+            self = .figure(try? element.select("figcaption").text(), url)
         case "pre":
-
-            return .code(try? element.attr("title"),
+            self = .code(try? element.attr("title"),
                          try element.select("code").text())
         case "div":
             switch try element.className() {
@@ -65,46 +67,50 @@ extension PostContent {
                     .compactMap { try? $0.attr("src") }
                     .compactMap { URL(string: $0) }
                 guard imageURLs.count == 2 else {
-                    return .cannotRender
+                    self = .cannotRender
+                    return
                 }
                 let text = try? element.select("figcaption").text()
-                return .slider(text,
+                self = .slider(text,
                                imageURLs.first!, imageURLs.last!)
             case "wp-block-columns":
-                return .column(element.children()
+                self = .column(element.children()
                                 .compactMap { $0.children().first() }
                                 .compactMap {
-                    try? Self.mapContent(element: $0)
+                    try? Self(element: $0)
                 })
             case "wp-block-image":
                 guard let child = element.children().first() else {
-                    return .cannotRender
+                    self = .cannotRender
+                    return
                 }
-                return try Self.mapContent(element: child)
+                self = try Self(element: child)
             case _ where try element.className().contains("vlp-link-container"):
                 let urlString = try element.select("a").attr("href")
                 guard let url = URL(string: urlString) else {
-                    return .cannotRender
+                    self = .cannotRender
+                    return
                 }
                 let imageURL = try element.select("img").attr("src")
                 let title = try element.select(".vlp-link-title").text()
                 let body = try element.select(".vlp-link-summary").text()
-                return .link(URL(string: imageURL), title, body, url)
+                self = .link(URL(string: imageURL), title, body, url)
             default:
-                return .cannotRender
+                self = .cannotRender
             }
         case "hr":
-            return .horizontalRule
+            self = .horizontalRule
         case "a":
             let url = try element.attr("href").lowercased()
             guard url.contains("twitter") && url.contains("oliver_binns") else {
-                return .cannotRender
+                self = .cannotRender
+                return
             }
-            return .twitter
+            self = .twitter
         case "script":
-            return .blank
+            self = .blank
         default:
-            return .cannotRender
+            self = .cannotRender
         }
     }
 }
