@@ -1,0 +1,105 @@
+/*
+Theme Name: Oliver Binns
+Theme URI: http://example.com/twenty-fifteen-child/
+description: >-
+  Oliver Binns Theme
+Author: Oliver Binns
+Author URI: http://example.com
+Template: lodestar
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: light, dark, two-columns, right-sidebar, responsive-layout, accessibility-ready
+Text Domain: twenty-fifteen-child
+*/
+
+.header-top {
+	width:100%;
+	background-color:rgba(0,0,0,0.7);
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left:16px;
+	padding-right:16px;
+	border-bottom: 2px solid #1fa1bf;
+	position:fixed;
+	opacity:0.7;
+	text-transform:none;
+}
+.custom-header {
+	display:none;
+}
+.header-top .wrap {
+	margin: 0;
+	padding:0 !important;
+}
+.main-navigation a {
+	font-family: Quicksand, sans-serif;
+	font-weight:600;
+	font-size:120%;
+	padding-right: 8px;
+	padding-left: 8px;
+	padding-top:3px !important;
+	padding-bottom:4px !important;
+}
+@media only screen and (max-width: 959px) {
+	#primary {
+		padding-top:70px;
+	}
+}
+@media only screen and (min-width: 960px) {
+	.menu-navigation-menu-container {
+		background-repeat: no-repeat;
+		background-size: contain;
+		min-height:35px;
+		padding-left:71px;
+		background-image: url('/img/logos/sml.png');
+	}
+}
+.main-navigation ul li.current_page_item > a, .main-navigation ul li.current-menu-item > a, .main-navigation ul li.current_page_ancestor > a {
+	background:rgba(0,0,0,0) !important;
+	color:rgba(255,255,255,0.5);
+}
+footer {
+	display:none;
+}
+.entry-content h1, .entry-content h2 {
+	color:black;
+	margin-bottom:0;
+}
+body, h1, h2, h3, h4, h5, h6 {
+	font-family: 'Playfair Display', serif;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-weight:600;
+	text-transform:none;
+	letter-spacing:0;
+}
+.wp-block-image figcaption {
+	color:gray;
+	text-align:center;
+	font-family:'Quicksand', sans-serif;
+}
+em {
+	font-weight:normal;
+}
+#primary p, #primary ul {
+	font-size:1.25rem;
+}
+@media (prefers-color-scheme: dark) {
+	pre {
+		background-color:rgb(30,30,30);
+	}
+
+	.entry-content h1, .entry-content h2, .entry-content h3, .entry-content h4 {
+		color:white;
+	}
+
+
+	body {
+		background-color:black !important;
+		color:white;
+	}
+}
+a, a:visited {
+	color:#1fa1bf;
+}
