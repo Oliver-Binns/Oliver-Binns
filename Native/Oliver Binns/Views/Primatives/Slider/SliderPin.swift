@@ -2,7 +2,7 @@
 //  SliderPin.swift
 //  Oliver Binns
 //
-//  Created by Laptop 3 on 14/10/2020.
+//  Created by Oliver Binns on 14/10/2020.
 //
 
 import SwiftUI

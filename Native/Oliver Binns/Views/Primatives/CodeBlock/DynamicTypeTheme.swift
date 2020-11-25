@@ -2,7 +2,7 @@
 //  DynamicTypeTheme.swift
 //  Oliver Binns
 //
-//  Created by Laptop 3 on 18/10/2020.
+//  Created by Oliver Binns on 18/10/2020.
 //
 import Sourceful
 import UIKit

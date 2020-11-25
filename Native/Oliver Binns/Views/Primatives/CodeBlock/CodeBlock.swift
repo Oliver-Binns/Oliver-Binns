@@ -2,7 +2,7 @@
 //  CodeBlock.swift
 //  Oliver Binns
 //
-//  Created by Laptop 3 on 11/10/2020.
+//  Created by Oliver Binns on 11/10/2020.
 //
 import SwiftUI
 import Sourceful

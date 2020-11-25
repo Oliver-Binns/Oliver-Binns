@@ -2,7 +2,7 @@
 //  PostHeader.swift
 //  Oliver Binns
 //
-//  Created by Laptop 3 on 10/10/2020.
+//  Created by Oliver Binns on 10/10/2020.
 //
 
 import SwiftUI
@@ -25,7 +25,7 @@ struct PostHeader: View {
             }
             Text(post.title)
                 .font(.title)
-            Text("Posted on \(DateFormatter.humanReadable.string(from: post.date))")
+            Text("Posted on \(DateFormatter.humanReadable.string(from: post.publishedDate))")
                 .font(.headline)
                 .foregroundColor(.secondary)
         }

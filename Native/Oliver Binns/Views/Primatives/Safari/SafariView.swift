@@ -2,7 +2,7 @@
 //  SafariView.swift
 //  Oliver Binns
 //
-//  Created by Laptop 3 on 27/10/2020.
+//  Created by Oliver Binns on 27/10/2020.
 //
 import UIKit
 import SafariServices

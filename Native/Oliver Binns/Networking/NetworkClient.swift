@@ -2,7 +2,7 @@
 //  NetworkClient.swift
 //  Oliver Binns
 //
-//  Created by Laptop 3 on 12/09/2020.
+//  Created by Oliver Binns on 12/09/2020.
 //
 import Foundation
 

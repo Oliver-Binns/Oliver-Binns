@@ -2,7 +2,7 @@
 //  HTMLText.swift
 //  Oliver Binns
 //
-//  Created by Laptop 3 on 12/09/2020.
+//  Created by Oliver Binns on 12/09/2020.
 //
 import SwiftUI
 import UIKit
@@ -147,8 +147,6 @@ fileprivate final class HTMLLabel: UILabel {
                                           y: (bounds.size.height - textBoundingBox.size.height) * 0.5 - textBoundingBox.origin.y)
         let locationOfTouchInTextContainer = CGPoint(x: tapPoint.x - textContainerOffset.x,
                                                      y: tapPoint.y - textContainerOffset.y)
-        //let indexOfCharacter = layoutManager.characterIndex(for: locationOfTouchInTextContainer, in: textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
-        //return NSLocationInRange(indexOfCharacter, targetRange)
         return layoutManager.characterIndex(for: locationOfTouchInTextContainer, in: textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
     }
 }

@@ -2,7 +2,7 @@
 //  Post.swift
 //  Oliver Binns
 //
-//  Created by Laptop 3 on 12/09/2020.
+//  Created by Oliver Binns on 12/09/2020.
 //
 import SwiftSoup
 import SwiftUI
@@ -37,7 +37,7 @@ final class Post: NSObject, Decodable, Identifiable {
         link = try values.decode(URL.self, forKey: .link)
         imageURL = try? values.decode(URL.self, forKey: .imageURL)
 
-        date = try values.decode(Date.self, forKey: .date)
+        publishedDate = try values.decode(Date.self, forKey: .publishedDate)
 
         let excerptHTML = try values.decode(RenderedContent.self, forKey: .excerpt).rendered
         let contentHTML = try values.decode(RenderedContent.self, forKey: .content).rendered
