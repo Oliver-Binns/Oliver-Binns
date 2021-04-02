@@ -13,6 +13,7 @@ struct YouTubePlayer: UIViewRepresentable {
 
     func makeUIView(context: Context) -> YTPlayerView {
         let view = YTPlayerView()
+        view.contentMode = .scaleAspectFit
         view.load(withVideoId: videoID)
         return view
     }

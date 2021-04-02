@@ -52,10 +52,14 @@ struct PostView: View {
         case .twitter:
             TwitterView()
         case .youTube(let videoID, let caption):
-            YouTubePlayer(videoID: videoID)
-            Text(caption)
-                .font(.footnote)
-                .foregroundColor(.secondary)
+            VStack(alignment: .center, spacing: 4) {
+                YouTubePlayer(videoID: videoID)
+                    .aspectRatio(CGSize(width: 16, height: 9), contentMode: .fit)
+                Text(caption)
+                    .font(.footnote)
+                    .foregroundColor(.secondary)
+                    .multilineTextAlignment(.center)
+            }
         case .link(let imageURL, let title, let body, let url):
             LinkView(imageURL: imageURL,
                      title: title, bodyText: body,
