@@ -8,4 +8,6 @@ import UIKit
 
 extension UIColor {
     static let accent = UIColor(named: "AccentColor")!
+    static let twitter = UIColor(named: "Twitter")!
+    static let linkedIn = UIColor(named: "LinkedIn")!
 }

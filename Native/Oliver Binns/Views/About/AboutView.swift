@@ -11,39 +11,34 @@ struct AboutView: View {
     var body: some View {
         VStack(spacing: 16) {
             ProfileView()
-            /*Card {
-                VStack(alignment: .leading) {
-                    Text("iOS")
-                        .font(.system(Font.TextStyle.largeTitle,
-                                      design: .rounded))
-                        .fontWeight(.bold)
-                    Text("Oliver is an experienced iOS Developer.")
-                    List {
-                        HStack {
-
-                        }
-                    }
+            AdaptiveStack(spacing: 16){
+                Link(destination: .twitter) {
+                    Card(backgroundColor: Color("Twitter")) {
+                        Text("Twitter")
+                            .font(.system(Font.TextStyle.largeTitle,
+                                          design: .rounded))
+                            .fontWeight(.bold)
+                    }.foregroundColor(.black)
+                }
+                Link(destination: .gitHub) {
+                    Card(backgroundColor: .white) {
+                        Text("GitHub")
+                            .font(.system(Font.TextStyle.largeTitle,
+                                          design: .rounded))
+                            .fontWeight(.bold)
+                            .foregroundColor(.black)
+                    }.foregroundColor(.white)
+                }
+                Link(destination: .linkedIn) {
+                    Card(backgroundColor: Color("LinkedIn")) {
+                        Text("LinkedIn")
+                            .font(.system(Font.TextStyle.largeTitle,
+                                          design: .rounded))
+                            .fontWeight(.bold)
+                    }.foregroundColor(.white)
                 }
             }
-            Card(backgroundColor: Color(UIColor.systemGreen)) {
-                Text("Android")
-                    .font(.system(Font.TextStyle.largeTitle,
-                                  design: .rounded))
-                    .fontWeight(.bold)
-            }.foregroundColor(.white)
-            Card(backgroundColor: Color(UIColor.systemPurple)) {
-                Text("Web")
-                    .font(.system(Font.TextStyle.largeTitle,
-                                  design: .rounded))
-                    .fontWeight(.bold)
-            }.foregroundColor(.white)
-            Card(backgroundColor: Color(UIColor.systemTeal)) {
-                Text("DevOps")
-                    .font(.system(Font.TextStyle.largeTitle,
-                                  design: .rounded))
-                    .fontWeight(.bold)
-            }*/
-        }.padding(.bottom)
+        }.padding(.vertical)
     }
 }
 
