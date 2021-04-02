@@ -69,6 +69,10 @@
 		078A3C0525376101002FE244 /* SliderPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078A3C0425376101002FE244 /* SliderPin.swift */; };
 		0794BE48250E900300CAEA95 /* KeyedDecodingContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0794BE47250E900300CAEA95 /* KeyedDecodingContainer.swift */; };
 		0794BE4A250E922000CAEA95 /* CodingUserInfoKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0794BE49250E922000CAEA95 /* CodingUserInfoKey.swift */; };
+		079C5367261720850073F88A /* YouTubeiOSPlayerHelper in Frameworks */ = {isa = PBXBuildFile; productRef = 079C5366261720850073F88A /* YouTubeiOSPlayerHelper */; };
+		079C536C261720A50073F88A /* YouTubePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079C536B261720A50073F88A /* YouTubePlayer.swift */; };
+		079C5371261723420073F88A /* YouTubePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079C536B261720A50073F88A /* YouTubePlayer.swift */; };
+		079C5375261723580073F88A /* YouTubeiOSPlayerHelper in Frameworks */ = {isa = PBXBuildFile; productRef = 079C5374261723580073F88A /* YouTubeiOSPlayerHelper */; };
 		07B149222531D88D00281920 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B149212531D88D00281920 /* AboutView.swift */; };
 		07B149262531D8B200281920 /* PostPreviewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B149252531D8B200281920 /* PostPreviewsView.swift */; };
 		07B1492C2531D95400281920 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B1492B2531D95400281920 /* AsyncImage.swift */; };
@@ -147,6 +151,7 @@
 		078A3C0425376101002FE244 /* SliderPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderPin.swift; sourceTree = "<group>"; };
 		0794BE47250E900300CAEA95 /* KeyedDecodingContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyedDecodingContainer.swift; sourceTree = "<group>"; };
 		0794BE49250E922000CAEA95 /* CodingUserInfoKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodingUserInfoKey.swift; sourceTree = "<group>"; };
+		079C536B261720A50073F88A /* YouTubePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubePlayer.swift; sourceTree = "<group>"; };
 		07B149212531D88D00281920 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		07B149252531D8B200281920 /* PostPreviewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPreviewsView.swift; sourceTree = "<group>"; };
 		07B1492B2531D95400281920 /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
@@ -182,6 +187,7 @@
 			files = (
 				0786FDD525499B43006F9543 /* Sourceful in Frameworks */,
 				0786FDD725499B43006F9543 /* SwiftSoup in Frameworks */,
+				079C5375261723580073F88A /* YouTubeiOSPlayerHelper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,6 +197,7 @@
 			files = (
 				07E8C0612533283200A39ADF /* Sourceful in Frameworks */,
 				07E8C07C25337AEE00A39ADF /* SwiftSoup in Frameworks */,
+				079C5367261720850073F88A /* YouTubeiOSPlayerHelper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,9 +305,18 @@
 			path = Slider;
 			sourceTree = "<group>";
 		};
+		079C536A261720970073F88A /* YouTube */ = {
+			isa = PBXGroup;
+			children = (
+				079C536B261720A50073F88A /* YouTubePlayer.swift */,
+			);
+			path = YouTube;
+			sourceTree = "<group>";
+		};
 		07B1492A2531D93E00281920 /* Primatives */ = {
 			isa = PBXGroup;
 			children = (
+				079C536A261720970073F88A /* YouTube */,
 				072ABD602549BF8B0040F426 /* Share */,
 				0786FD6F25498B5D006F9543 /* Safari */,
 				078A3C03253760ED002FE244 /* Slider */,
@@ -426,6 +442,7 @@
 			packageProductDependencies = (
 				0786FDD425499B43006F9543 /* Sourceful */,
 				0786FDD625499B43006F9543 /* SwiftSoup */,
+				079C5374261723580073F88A /* YouTubeiOSPlayerHelper */,
 			);
 			productName = Preview;
 			productReference = 0786FD82254999C2006F9543 /* Preview.app */;
@@ -449,6 +466,7 @@
 			packageProductDependencies = (
 				07E8C0602533283200A39ADF /* Sourceful */,
 				07E8C07B25337AEE00A39ADF /* SwiftSoup */,
+				079C5366261720850073F88A /* YouTubeiOSPlayerHelper */,
 			);
 			productName = "Oliver Binns";
 			productReference = 07C0F530250CE48B000B0123 /* Oliver Binns.app */;
@@ -483,6 +501,7 @@
 			packageReferences = (
 				07E8C05F2533283200A39ADF /* XCRemoteSwiftPackageReference "Sourceful" */,
 				07E8C07A25337AEE00A39ADF /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+				079C5365261720850073F88A /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */,
 			);
 			productRefGroup = 07C0F531250CE48B000B0123 /* Products */;
 			projectDirPath = "";
@@ -544,6 +563,7 @@
 				0786FDB925499A1D006F9543 /* ActivityView.swift in Sources */,
 				0786FD87254999C2006F9543 /* ContentView.swift in Sources */,
 				0786FDBA25499A1D006F9543 /* SafariView.swift in Sources */,
+				079C5371261723420073F88A /* YouTubePlayer.swift in Sources */,
 				0786FDBE25499A24006F9543 /* URL.swift in Sources */,
 				0786FDB525499A1D006F9543 /* AsyncImage.swift in Sources */,
 				0786FD85254999C2006F9543 /* PreviewApp.swift in Sources */,
@@ -582,6 +602,7 @@
 				07E8C06C253332C600A39ADF /* ReadableGuidePadding.swift in Sources */,
 				07E8C073253358FC00A39ADF /* Figure.swift in Sources */,
 				07C0F54C250CE5E1000B0123 /* Post.swift in Sources */,
+				079C536C261720A50073F88A /* YouTubePlayer.swift in Sources */,
 				07C0F549250CE4CC000B0123 /* URLRequest+Blog.swift in Sources */,
 				07B149512531F41300281920 /* LinkView.swift in Sources */,
 				072ABD622549BF960040F426 /* ShareButton.swift in Sources */,
@@ -626,7 +647,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Preview/Preview.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.1.1;
+				CURRENT_PROJECT_VERSION = 1.0.3.1;
 				DEVELOPMENT_ASSET_PATHS = "\"Preview/Preview Content\"";
 				DEVELOPMENT_TEAM = Z86DH46P79;
 				ENABLE_PREVIEWS = YES;
@@ -636,7 +657,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.oliverbinns.oliverbinns.clip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -651,7 +672,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Preview/Preview.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.1.1;
+				CURRENT_PROJECT_VERSION = 1.0.3.1;
 				DEVELOPMENT_ASSET_PATHS = "\"Preview/Preview Content\"";
 				DEVELOPMENT_TEAM = Z86DH46P79;
 				ENABLE_PREVIEWS = YES;
@@ -661,7 +682,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.oliverbinns.oliverbinns.clip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -793,7 +814,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Oliver Binns/Oliver Binns.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.1.1;
+				CURRENT_PROJECT_VERSION = 1.0.3.1;
 				DEVELOPMENT_ASSET_PATHS = "\"Oliver Binns/Preview Content\"";
 				DEVELOPMENT_TEAM = Z86DH46P79;
 				ENABLE_PREVIEWS = YES;
@@ -803,7 +824,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.oliverbinns.oliverbinns;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -819,7 +840,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Oliver Binns/Oliver Binns.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.1.1;
+				CURRENT_PROJECT_VERSION = 1.0.3.1;
 				DEVELOPMENT_ASSET_PATHS = "\"Oliver Binns/Preview Content\"";
 				DEVELOPMENT_TEAM = Z86DH46P79;
 				ENABLE_PREVIEWS = YES;
@@ -829,7 +850,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.oliverbinns.oliverbinns;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -870,6 +891,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		079C5365261720850073F88A /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ivanlisovyi/youtube-ios-player-helper.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		07E8C05F2533283200A39ADF /* XCRemoteSwiftPackageReference "Sourceful" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/twostraws/Sourceful";
@@ -898,6 +927,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 07E8C07A25337AEE00A39ADF /* XCRemoteSwiftPackageReference "SwiftSoup" */;
 			productName = SwiftSoup;
+		};
+		079C5366261720850073F88A /* YouTubeiOSPlayerHelper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 079C5365261720850073F88A /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */;
+			productName = YouTubeiOSPlayerHelper;
+		};
+		079C5374261723580073F88A /* YouTubeiOSPlayerHelper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 079C5365261720850073F88A /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */;
+			productName = YouTubeiOSPlayerHelper;
 		};
 		07E8C0602533283200A39ADF /* Sourceful */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -10,11 +10,15 @@ private struct ReadableGuidePadding: ViewModifier {
 
     func body(content: Content) -> some View {
         HStack {
-            Spacer()
-            content
-                .frame(maxWidth: 672)
-                .padding(.horizontal)
-            Spacer()
+            if horizontal == .compact {
+                content.padding(.horizontal)
+            } else {
+                Spacer()
+                content
+                    .frame(maxWidth: 672)
+                    .padding(.horizontal)
+                Spacer()
+            }
         }
     }
 }

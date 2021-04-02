@@ -11,8 +11,12 @@ enum PostContent {
     case heading1(String)
     case heading2(String)
     case heading3(String)
+    case heading4(String)
+    case heading5(String)
+    case heading6(String)
 
     case body(NSAttributedString)
+    case superscript(NSAttributedString)
     case image(URL)
 
     case figure(String?, URL)
@@ -24,6 +28,7 @@ enum PostContent {
 
     case link(URL?, String, String, URL)
     case twitter
+    case youTube(String, String)
 
     case column([PostContent])
     case blank
@@ -39,7 +44,15 @@ extension PostContent {
             self = try .heading2(element.text())
         case "h3":
             self = try .heading3(element.text())
+        case "h4":
+            self = try .heading4(element.text())
+        case "h5":
+            self = try .heading5(element.text())
+        case "h6":
+            self = try .heading6(element.text())
         case "ul", "ol", "p", "blockquote":
+            let isSuperscript = element.children().count == 1 && element.child(0).tagName() == "sup"
+            let element = isSuperscript ? element.child(0) : element
             guard let string = try? NSMutableAttributedString(data: Data(element.html().utf8),
                                                               options: [
                                                                 .documentType: NSAttributedString.DocumentType.html,
@@ -49,7 +62,14 @@ extension PostContent {
                 self = .cannotRender
                 return
             }
-            self = .body(string)
+            self = isSuperscript ? .superscript(string) : .body(string)
+        case "figure" where try element.className().contains("youtube"):
+            guard let url = URL(string: try element.select("iframe").attr("src")) else {
+                self = .cannotRender
+                return
+            }
+            let caption = try element.select("figcaption").text()
+            self = .youTube(url.lastPathComponent, caption)
         case "figure":
             guard let src = try? element.select("img").attr("src"),
                   let url = URL(string: src) else {

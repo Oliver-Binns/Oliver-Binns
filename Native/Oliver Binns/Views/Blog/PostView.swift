@@ -32,9 +32,17 @@ struct PostView: View {
             Text(string).font(.title2)
         case .heading3(let string):
             Text(string).font(.title3)
+        case .heading4(let string):
+            Text(string).font(.headline)
+        case .heading5(let string):
+            Text(string).font(.callout)
+        case .heading6(let string):
+            Text(string).font(.subheadline)
         case .body(let string):
             AttributedText(attributedText: string)
-                .font(.system(size: 17, weight: .regular, design: .serif))
+        case .superscript(let string):
+            AttributedText(attributedText: string,
+                           font: .serifCaption, textColor: .secondaryLabel)
         case .code(let title, let content):
             CodeBlock(title: title, code: content)
         case .slider(let caption, let firstImage, let secondImage):
@@ -43,6 +51,11 @@ struct PostView: View {
             Figure(caption: caption, url: url)
         case .twitter:
             TwitterView()
+        case .youTube(let videoID, let caption):
+            YouTubePlayer(videoID: videoID)
+            Text(caption)
+                .font(.footnote)
+                .foregroundColor(.secondary)
         case .link(let imageURL, let title, let body, let url):
             LinkView(imageURL: imageURL,
                      title: title, bodyText: body,

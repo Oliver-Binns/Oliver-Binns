@@ -23,8 +23,7 @@ struct PostPreviewsView: View {
                         PostHeader(post: post, contentMode: .fill)
                         AttributedText(attributedText: post.excerpt)
                             .font(.system(size: 17, weight: .regular, design: .serif))
-                    }
-                    .padding()
+                    }.readableGuidePadding()
                 }.buttonStyle(PlainButtonStyle())
                 Divider()
             }

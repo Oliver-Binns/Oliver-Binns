@@ -15,6 +15,10 @@ extension UIFont {
         .init(style: .body, weight: .regular, design: .serif)
     }
 
+    static var serifCaption: UIFont {
+        .init(style: .caption1, weight: .regular, design: .serif)
+    }
+
     fileprivate convenience init(style: TextStyle,
                                  weight: Weight = .regular,
                                  design: UIFontDescriptor.SystemDesign = .default) {
