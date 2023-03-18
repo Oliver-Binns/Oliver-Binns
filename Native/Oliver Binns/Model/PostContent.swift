@@ -6,7 +6,7 @@
 //
 import Foundation
 
-enum PostContent {
+indirect enum PostContent {
     case heading(AttributedString, Int)
     case body(AttributedString)
 
@@ -18,8 +18,10 @@ enum PostContent {
     case horizontalRule
 
     case link(URL?, String, String, URL)
-    case twitter
     case youTube(String, AttributedString?)
+
+    case unorderedList([PostContent])
+    case orderedList([PostContent])
 
     case column([PostContent])
     case blank

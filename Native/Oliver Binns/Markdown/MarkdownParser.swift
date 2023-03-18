@@ -9,7 +9,7 @@ struct MarkdownParser {
     func parse(_ markdown: String) throws -> [PostContent] {
         let children = Array(Document(parsing: markdown).children)
         var index = 2 // remove first two elements as they are used for metadata
-        var postContent: [PostContent] = []
+        var postContent: [PostContent] = [.horizontalRule]
 
         while index < children.count {
             defer { index += 1 }
@@ -31,6 +31,10 @@ struct MarkdownParser {
                 }
             case let block as CodeBlock:
                 postContent.append(.code(block.code.trimmingCharacters(in: .whitespacesAndNewlines)))
+            case let list as UnorderedList:
+                postContent.append(parse(list))
+            case let list as OrderedList:
+                postContent.append(parse(list))
             default:
                 print("missed", child.debugDescription())
                 postContent.append(.cannotRender)
@@ -47,6 +51,40 @@ struct MarkdownParser {
             .map { text in
                 PostContent.heading(text, heading.level)
             }
+    }
+
+    private func parse(_ list: UnorderedList) -> PostContent {
+        return .unorderedList(list.listItems
+            .flatMap { $0.children }
+            .flatMap { child -> [PostContent] in
+            switch child {
+            case let paragraph as Paragraph:
+                return parse(paragraph)
+            case let list as UnorderedList:
+                return [parse(list)]
+            case let list as OrderedList:
+                return [parse(list)]
+            default:
+                return []
+            }
+        })
+    }
+
+    private func parse(_ list: OrderedList) -> PostContent {
+        return .orderedList(list.listItems
+            .flatMap { $0.children }
+            .flatMap { child -> [PostContent] in
+            switch child {
+            case let paragraph as Paragraph:
+                return parse(paragraph)
+            case let list as UnorderedList:
+                return [parse(list)]
+            case let list as OrderedList:
+                return [parse(list)]
+            default:
+                return []
+            }
+        })
     }
 
     private func parse(_ paragraph: Paragraph) -> [PostContent] {

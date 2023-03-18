@@ -81,8 +81,6 @@ struct PostView: View {
             Slider(caption: caption, firstImage: firstImage, secondImage: secondImage)
         case .image(let caption, let altText, let url):
             Figure(caption: caption, altText: altText, url: url)
-        case .twitter:
-            TwitterView()
         case .youTube(let videoID, let caption):
             VStack(alignment: .center, spacing: 4) {
                 YouTubePlayer(videoID: videoID)
@@ -99,6 +97,12 @@ struct PostView: View {
                      title: title, bodyText: body,
                      url: url)
             .readableGuidePadding()
+        case .unorderedList(let content):
+            AnyView(unorderedList(content: content))
+                .readableGuidePadding()
+        case .orderedList(let content):
+            AnyView(orderedList(content: content))
+                .readableGuidePadding()
         case .blank:
             EmptyView()
         case .column(let columns):
@@ -116,6 +120,34 @@ struct PostView: View {
                 Image(systemName: "exclamationmark.triangle.fill")
                     .foregroundColor(.yellow)
                 Text("Could not render this content.").italic()
+            }
+        }
+    }
+
+    @ViewBuilder
+    func unorderedList(content: [PostContent]) -> some View {
+        VStack(spacing: 0) {
+            ForEach(0..<content.count, id: \.self) { index in
+                HStack(alignment: .firstTextBaseline, spacing: 0) {
+                    if case .body = content[index] {
+                        Text("•")
+                    } else {
+                        Text(" ")
+                    }
+                    viewForContent(content[index])
+                }
+            }
+        }
+    }
+
+    @ViewBuilder
+    func orderedList(content: [PostContent]) -> some View {
+        VStack(spacing: 0) {
+            ForEach(0..<content.count, id: \.self) { index in
+                HStack(alignment: .firstTextBaseline, spacing: 0) {
+                    Text("\(index+1).")
+                    viewForContent(content[index])
+                }
             }
         }
     }
