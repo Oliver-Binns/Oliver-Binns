@@ -79,8 +79,8 @@ struct PostView: View {
             CodeSnippet(code: content)
         case .slider(let caption, let firstImage, let secondImage):
             Slider(caption: caption, firstImage: firstImage, secondImage: secondImage)
-        case .figure(let caption, let url):
-            Figure(caption: caption, url: url)
+        case .image(let caption, let altText, let url):
+            Figure(caption: caption, altText: altText, url: url)
         case .twitter:
             TwitterView()
         case .youTube(let videoID, let caption):

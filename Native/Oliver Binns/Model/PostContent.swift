@@ -10,9 +10,7 @@ enum PostContent {
     case heading(AttributedString, Int)
     case body(AttributedString)
 
-    case image(URL)
-
-    case figure(String?, URL)
+    case image(AttributedString?, String, URL)
     case code(String)
 
     case slider(String?, URL, URL)

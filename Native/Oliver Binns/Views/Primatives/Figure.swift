@@ -7,17 +7,19 @@
 import SwiftUI
 
 struct Figure: View {
-    var caption: String?
-    var url: URL?
+    let caption: AttributedString?
+    let altText: String
+    let url: URL
 
     var body: some View {
         VStack {
-            if let url = url {
-                AsyncImage(url: url)
-                    .aspectRatio(contentMode: .fit)
-            }
-            if caption != nil {
-                Text(caption!)
+            AsyncImage(url: url,
+                       content: { $0.resizable() },
+                       placeholder: { Color.accentColor })
+                .accessibilityLabel(altText)
+                .aspectRatio(contentMode: .fit)
+            if let caption {
+                Text(caption)
                     .multilineTextAlignment(.center)
                     .font(.caption)
                     .foregroundColor(Color(UIColor.secondaryLabel))
@@ -28,6 +30,8 @@ struct Figure: View {
 
 struct Figure_Previews: PreviewProvider {
     static var previews: some View {
-        Figure(caption: "", url: URL(string: "https://www.google.com"))
+        Figure(caption: "",
+               altText: "Testing 123",
+               url: URL(string: "https://www.google.com")!)
     }
 }

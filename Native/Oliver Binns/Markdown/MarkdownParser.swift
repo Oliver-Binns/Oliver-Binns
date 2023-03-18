@@ -7,29 +7,37 @@ struct MarkdownParser {
     }
 
     func parse(_ markdown: String) throws -> [PostContent] {
-        [.horizontalRule] + Document(parsing: markdown)
-            .children.dropFirst(2) // remove first two as they are used for metadata
-            .flatMap(parseRecursively)
-    }
+        let children = Array(Document(parsing: markdown).children)
+        var index = 2 // remove first two elements as they are used for metadata
+        var postContent: [PostContent] = []
 
-    private func parseRecursively(child: Markup) -> [PostContent] {
-        switch child {
-        case let heading as Heading:
-            return parse(heading)
-        case is ThematicBreak:
-            return [.horizontalRule]
-        case let paragraph as Paragraph:
-            return parse(paragraph)
-        case let text as Text:
-            return [.body(AttributedString(text.string))]
-        case let quote as BlockQuote:
-            return parse(quote)
-        case let block as CodeBlock:
-            return [.code(block.code.trimmingCharacters(in: .whitespacesAndNewlines))]
-        default:
-            print("missed", child.debugDescription())
-            return []
+        while index < children.count {
+            defer { index += 1 }
+
+            let child = children[index]
+
+            switch child {
+            case let heading as Heading:
+                postContent.append(contentsOf: parse(heading))
+            case is ThematicBreak:
+                postContent.append(.horizontalRule)
+            case let paragraph as Paragraph:
+                postContent.append(contentsOf: parse(paragraph))
+            case let text as Text:
+                postContent.append(.body(AttributedString(text.string)))
+            case let quote as BlockQuote:
+                if let content = parse(quote) {
+                    postContent.append(content)
+                }
+            case let block as CodeBlock:
+                postContent.append(.code(block.code.trimmingCharacters(in: .whitespacesAndNewlines)))
+            default:
+                print("missed", child.debugDescription())
+                postContent.append(.cannotRender)
+            }
         }
+
+        return postContent
     }
 
     private func parse(_ heading: Heading) -> [PostContent] {
@@ -42,14 +50,55 @@ struct MarkdownParser {
     }
 
     private func parse(_ paragraph: Paragraph) -> [PostContent] {
-        let string = AttributedString(try: paragraph.format())
-        return [.body(string)]
+        var children: [InlineMarkup] = []
+        var content: [PostContent] = []
+
+        let update = {
+            guard !children.isEmpty else { return }
+            let string = AttributedString(try: Paragraph(children).format())
+            content.append(.body(string))
+        }
+
+        var index: Int = 0
+
+        while index < paragraph.childCount {
+            defer { index += 1 }
+
+            let child = paragraph.child(at: index)!
+
+            switch child {
+            case let image as Image:
+                update() // resolve precursor text
+
+                guard let imagePath = image.source,
+                      let altText = image.child(at: 0) as? Text else { break }
+
+                let imageURL = imagePath.isValidURL ?
+                    URL(string: imagePath)! : .image(path: imagePath)
+
+                // find caption (next node)
+                index += 2
+                let caption = paragraph.child(at: index) as? Emphasis
+
+                content.append(.image(caption.map { AttributedString(try: $0.format()) },
+                                      altText.string,
+                                      imageURL))
+            case let markup as InlineMarkup:
+                children.append(markup)
+            default:
+                assertionFailure("Non-inline mark-up shouldn't be a child of paragraph")
+            }
+        }
+
+        update()
+
+        return content
     }
 
-    private func parse(_ quote: BlockQuote) -> [PostContent] {
+    private func parse(_ quote: BlockQuote) -> PostContent? {
         guard let child = quote.child(at: 0) else {
             assertionFailure("Expected quote to have at least one child")
-            return []
+            return nil
         }
 
         switch child.format() {
@@ -58,26 +107,26 @@ struct MarkdownParser {
         case let value where value.hasPrefix("> youtube"):
             return parseYouTube(quote)
         default:
-            return [.body(AttributedString(try: quote.format()))]
+            return .body(AttributedString(try: quote.format()))
         }
     }
 
-    private func parseYouTube(_ youtube: BlockQuote) -> [PostContent] {
+    private func parseYouTube(_ youtube: BlockQuote) -> PostContent? {
         guard let link = youtube.findText(withPrefix: "youtube "),
               let components = URLComponents(string: link),
               let videoID = components.queryItems?.first(where: { $0.name == "v" })?.value else {
             assertionFailure("Invalid YouTube embed: \(youtube.debugDescription())")
-            return []
+            return nil
         }
-        return [.youTube(videoID, nil)]
+        return .youTube(videoID, nil)
     }
 
-    private func parsePrettyLink(_ link: BlockQuote) -> [PostContent] {
+    private func parsePrettyLink(_ link: BlockQuote) -> PostContent? {
         guard let title = link.findText(withPrefix: "title "),
               let description = link.findText(withPrefix: "description "),
               let urlString = link.findText(withPrefix: "prettylink ") else {
             assertionFailure("Invalid pretty link: \(link.debugDescription())")
-            return []
+            return nil
         }
 
         let url = urlString.isValidURL ? URL(string: urlString)! : .web(forPath: urlString)
@@ -85,11 +134,11 @@ struct MarkdownParser {
         if let image = link.findText(withPrefix: "image ") {
             guard image.isValidURL,
                   let imageURL = URL(string: image) else {
-                return [.link(.image(path: image), title, description, url)]
+                return .link(.image(path: image), title, description, url)
             }
-            return [.link(imageURL, title, description, url)]
+            return .link(imageURL, title, description, url)
         }
-        return [.link(nil, title, description, url)]
+        return .link(nil, title, description, url)
     }
 }
 
