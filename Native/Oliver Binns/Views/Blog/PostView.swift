@@ -10,33 +10,43 @@ struct PostView: View {
     let post: Post
     @State private var postContent: [PostContent] = []
 
+    @Environment(\.dismiss) var dismiss
+
     var body: some View {
         GeometryReader { proxy in
-            ScrollView(.vertical) {
-                VStack(alignment: .leading, spacing: 0) {
-                    PostHeader(post: post)
+            ZStack(alignment: .topTrailing) {
+                ScrollView(.vertical) {
+                    VStack(alignment: .leading, spacing: 0) {
+                        PostHeader(post: post)
 
-                    if postContent.isEmpty {
-                        HStack {
-                            Spacer()
-                            ActivityIndicator(isAnimating: .constant(true), style: .large)
-                            Spacer()
+                        if postContent.isEmpty {
+                            HStack {
+                                Spacer()
+                                ActivityIndicator(isAnimating: .constant(true), style: .large)
+                                Spacer()
+                            }
                         }
+
+                        VStack(spacing: 8) {
+                            ForEach(0..<postContent.count, id: \.self) { index in
+                                viewForContent(postContent[index])
+                            }
+                        }.padding(proxy.safeAreaInsets)
                     }
-
-                    VStack(spacing: 8) {
-                        ForEach(0..<postContent.count, id: \.self) { index in
-                            viewForContent(postContent[index])
-                        }
-                    }.padding(proxy.safeAreaInsets)
                 }
+                .navigationBarItems(trailing: ShareButton(activityItems: [URL.web(forPost: post)]) {
+                    Image(systemName: "square.and.arrow.up")
+                })
+                .task {
+                    await loadPost()
+                }.ignoresSafeArea(.container, edges: .horizontal)
+
+                Button { dismiss() } label: {
+                    Image(systemName: "xmark.circle.fill")
+                        .shadow(radius: 8)
+                        .font(.largeTitle)
+                }.padding()
             }
-            .navigationBarItems(trailing: ShareButton(activityItems: [URL.web(forPost: post)]) {
-                Image(systemName: "square.and.arrow.up")
-            })
-            .task {
-                await loadPost()
-            }.ignoresSafeArea(.container, edges: .horizontal)
         }
     }
 

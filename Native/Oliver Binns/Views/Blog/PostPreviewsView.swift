@@ -11,8 +11,6 @@ struct PostPreviewsView: View {
     @State var posts: [Post] = []
     @State var selectedItem: Post?
 
-    @Environment(\.horizontalSizeClass) var horizontalSizeClass
-
     var body: some View {
         ScrollView(.vertical) {
             VStack(alignment: .leading, spacing: 24) {
@@ -24,10 +22,10 @@ struct PostPreviewsView: View {
                         .onTapGesture {
                             selectedItem = post
                         }
+                        .padding(.horizontal)
                 }
             }
             .padding(.top)
-            .readableGuidePadding()
             .sheet(item: $selectedItem) { post in
                 PostView(post: post)
             }
