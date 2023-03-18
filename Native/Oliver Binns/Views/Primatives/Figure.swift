@@ -12,18 +12,9 @@ struct Figure: View {
 
     var body: some View {
         VStack {
-            if url != nil {
-                AsyncImage(
-                    url: url!,
-                    placeholder: {
-                        VStack {
-                            ActivityIndicator(isAnimating: .constant(true),
-                                              style: .large)
-                        }
-                    },
-                    image: { Image(uiImage: $0).resizable() }
-                )
-                .aspectRatio(contentMode: .fit)
+            if let url = url {
+                AsyncImage(url: url)
+                    .aspectRatio(contentMode: .fit)
             }
             if caption != nil {
                 Text(caption!)

@@ -7,20 +7,13 @@
 import SwiftUI
 import Sourceful
 
-struct CodeBlock: View {
-    var title: String?
+struct CodeSnippet: View {
     @State var code: String
     
     @State private var desiredHeight: CGFloat = 200
 
     var body: some View {
         VStack(alignment: .center) {
-            if title != nil, !title!.isEmpty {
-                Text(title!)
-                    .font(.headline)
-                    .multilineTextAlignment(.center)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
             SourceCodeTextView(text: $code,
                                desiredHeight: $desiredHeight,
                                customization: .init(didChangeText: { _ in },
@@ -37,8 +30,8 @@ struct CodeBlock: View {
     }
 }
 
-struct CodeBlock_Previews: PreviewProvider {
+struct CodeSnippet_Previews: PreviewProvider {
     static var previews: some View {
-        CodeBlock(code: "")
+        CodeSnippet(code: "")
     }
 }

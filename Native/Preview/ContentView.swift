@@ -32,7 +32,7 @@ struct ContentView: View {
     }
 
     func loadPost(withSlug slug: String) {
-        BlogService.getPost(slug: slug, client: .init()) { result in
+        /*BlogService.getPost(slug: slug, client: .init()) { result in
             switch result {
             case .success(let post):
                 self.post = post
@@ -40,7 +40,7 @@ struct ContentView: View {
                 isLoading = false
                 print(error)
             }
-        }
+        }*/
     }
 }
 

@@ -16,14 +16,13 @@ struct LinkView: View {
     var body: some View {
         SafariButton(url: url) {
             HStack(alignment: .top, spacing: 16) {
-                if imageURL != nil {
-                    AsyncImage(
-                        url: imageURL!,
-                        placeholder: { Image(systemName: "doc").resizable() },
-                        image: { Image(uiImage: $0).resizable() }
-                    )
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 100)
+                if let imageURL {
+                    AsyncImage(url: imageURL,
+                               content: { $0.resizable() },
+                               placeholder: { Color.accentColor })
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 100)
+                        .cornerRadius(7)
                 }
                 VStack(alignment: .leading, spacing: 8) {
                     Text(title)
@@ -35,8 +34,9 @@ struct LinkView: View {
             }
             .padding()
             .frame(maxWidth: .infinity)
-            .border(Color.primary)
-        }
+            .background(Color(UIColor.secondarySystemBackground))
+            .cornerRadius(12)
+        }.buttonStyle(.plain)
     }
 }
 

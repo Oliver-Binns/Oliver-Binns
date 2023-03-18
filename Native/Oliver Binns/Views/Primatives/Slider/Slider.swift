@@ -8,29 +8,22 @@ import SwiftUI
 
 struct Slider: View {
     let caption: String?
-    @StateObject private var loader: ImageLoader
-    @StateObject private var loader2: ImageLoader
+    let firstImage: URL
+    let secondImage: URL
 
     @State var crop: CGFloat = 0.50
-
-    init(caption: String?, firstImage: URL, secondImage: URL) {
-        self.caption = caption
-        _loader = StateObject(wrappedValue: ImageLoader(url: firstImage, cache: Environment(\.imageCache).wrappedValue))
-        _loader2 = StateObject(wrappedValue: ImageLoader(url: secondImage, cache: Environment(\.imageCache).wrappedValue))
-    }
 
     var body: some View {
         VStack(alignment: .center) {
             ZStack {
-                if loader.image != nil && loader2.image != nil {
-                    Image(uiImage: loader2.image!)
-                        .resizable()
+                if let firstImage,
+                    let secondImage {
+                    AsyncImage(url: firstImage)
                         .aspectRatio(contentMode: .fit)
                         .clipped()
                         .overlay(
                             GeometryReader { geometry in
-                                Image(uiImage: loader.image!)
-                                    .resizable()
+                                AsyncImage(url: secondImage)
                                     .aspectRatio(contentMode: .fill)
                                     .frame(width: geometry.size.width * crop,
                                            height: geometry.size.height,
@@ -60,10 +53,6 @@ struct Slider: View {
             }
         }
         .frame(maxWidth: .infinity)
-        .onAppear {
-            loader.load()
-            loader2.load()
-        }
     }
 }
 

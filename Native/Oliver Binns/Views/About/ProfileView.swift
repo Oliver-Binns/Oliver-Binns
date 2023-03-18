@@ -13,9 +13,7 @@ struct ProfileView: View {
                 VStack(alignment: .leading, spacing: 16) {
                     HStack(spacing: 16) {
                         VStack {
-                            AsyncImage(url: .profileImage,
-                                       placeholder: { ActivityIndicator(isAnimating: .constant(true), style: .large) },
-                                       image: { Image(uiImage: $0).resizable() })
+                            AsyncImage(url: .profileImage)
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 100, height: 100)
                                 .cornerRadius(10)

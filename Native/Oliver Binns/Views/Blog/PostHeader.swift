@@ -1,34 +1,47 @@
-//
-//  PostHeader.swift
-//  Oliver Binns
-//
-//  Created by Oliver Binns on 10/10/2020.
-//
-
 import SwiftUI
 
 struct PostHeader: View {
-    @State var post: Post
+    let post: Post
     var contentMode: ContentMode = .fit
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            if post.imageURL != nil {
-                AsyncImage(
-                    url: post.imageURL!,
-                    placeholder: {
-                        Image("Placeholder").resizable()
-                    },
-                    image: { Image(uiImage: $0).resizable() }
-                )
-                .aspectRatio(contentMode: contentMode)
+        VStack(alignment: .center, spacing: 8) {
+            if let path = post.imagePath {
+                HStack {
+                    Spacer()
+
+                    AsyncImage(url: .image(path: path), content: {
+                        $0
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                    }, placeholder: { Color.accentColor })
+                    .cornerRadius(12)
+                    .frame(maxWidth: 200)
+
+                    Spacer()
+                }
             }
+
             Text(post.title)
+                .foregroundColor(post.color == nil ? .black : .white)
                 .font(.title)
-            Text("Posted on \(DateFormatter.humanReadable.string(from: post.publishedDate))")
+                .fontWeight(.semibold)
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity, alignment: .center)
+
+            Text("Posted on \(DateFormatter.humanReadable.string(from: post.date))")
                 .font(.headline)
-                .foregroundColor(.secondary)
+                .foregroundColor(.accentColor)
+
+            Text("\(post.readingTime) min to read")
+                .font(.headline)
+                .foregroundColor(.accentColor)
+            
         }
+        .readableGuidePadding()
+        .padding(.vertical)
+        .background(post.color.flatMap(Color.init(hex:)) ?? Color.white)
+
     }
 }
 

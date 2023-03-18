@@ -1,34 +1,41 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "Sourceful",
-        "repositoryURL": "https://github.com/twostraws/Sourceful",
-        "state": {
-          "branch": "main",
-          "revision": "ef82b07261dceeedb6e48f1ecd4f4305b5cd10f8",
-          "version": null
-        }
-      },
-      {
-        "package": "SwiftSoup",
-        "repositoryURL": "https://github.com/scinfu/SwiftSoup",
-        "state": {
-          "branch": null,
-          "revision": "774dc9c7213085db8aa59595e27c1cd22e428904",
-          "version": "2.3.2"
-        }
-      },
-      {
-        "package": "YouTubeiOSPlayerHelper",
-        "repositoryURL": "https://github.com/ivanlisovyi/youtube-ios-player-helper.git",
-        "state": {
-          "branch": "master",
-          "revision": "b02a8c88e8724f605f30de907dfcd29daeaeb3b1",
-          "version": null
-        }
+  "pins" : [
+    {
+      "identity" : "sourceful",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/twostraws/Sourceful",
+      "state" : {
+        "branch" : "main",
+        "revision" : "ef82b07261dceeedb6e48f1ecd4f4305b5cd10f8"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "swift-cmark",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-cmark.git",
+      "state" : {
+        "branch" : "gfm",
+        "revision" : "86aeb491675de6f077a3a6df6cbcac1a25dcbee1"
+      }
+    },
+    {
+      "identity" : "swift-markdown",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-markdown.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "ad0b81fed55c4a72fdaeb5535884bd2886de96f4"
+      }
+    },
+    {
+      "identity" : "youtube-ios-player-helper",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ivanlisovyi/youtube-ios-player-helper.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "b02a8c88e8724f605f30de907dfcd29daeaeb3b1"
+      }
+    }
+  ],
+  "version" : 2
 }

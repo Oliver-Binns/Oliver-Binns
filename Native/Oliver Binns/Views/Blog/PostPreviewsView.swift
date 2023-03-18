@@ -9,37 +9,42 @@ import SwiftUI
 
 struct PostPreviewsView: View {
     @State var posts: [Post] = []
-    @State var selectedItem: Int?
-    @State private var desiredHeight: [CGFloat] = []
+    @State var selectedItem: Post?
 
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
 
     var body: some View {
         ScrollView(.vertical) {
-            ForEach(posts, id: \.self) { post in
-                NavigationLink(destination: PostView(post: post),
-                               tag: post.id, selection: $selectedItem) {
-                    VStack(alignment: .leading, spacing: 8) {
-                        PostHeader(post: post, contentMode: .fill)
-                        AttributedText(attributedText: post.excerpt)
-                            .font(.system(size: 17, weight: .regular, design: .serif))
-                    }.readableGuidePadding()
-                }.buttonStyle(PlainButtonStyle())
-                Divider()
+            VStack(alignment: .leading, spacing: 24) {
+                ForEach(posts.sorted(by: { $0.date > $1.date })) { post in
+                    PostHeader(post: post, contentMode: .fill)
+                        .cornerRadius(16)
+                        .aspectRatio(1, contentMode: .fit)
+                        .shadow(radius: 16)
+                        .onTapGesture {
+                            selectedItem = post
+                        }
+                }
+            }
+            .padding(.top)
+            .readableGuidePadding()
+            .sheet(item: $selectedItem) { post in
+                PostView(post: post)
             }
         }
         .navigationBarTitle("Blog")
-        .onAppear {
+        .task {
             guard posts.isEmpty else { return }
-            BlogService.getPosts(client: .init()) { result in
-                _ = result.map { posts in
-                    self.desiredHeight = posts.map { _ in 0 }
-                    if horizontalSizeClass == .regular && selectedItem == nil {
-                        self.selectedItem = posts.first?.id
-                    }
-                    self.posts = posts
-                }
-            }
+            await loadPosts()
+        }
+    }
+
+    private func loadPosts() async {
+        do {
+            self.posts = try await BlogService.getPosts(client: .init())
+        } catch {
+            print("error", error)
+            // handle error
         }
     }
 }

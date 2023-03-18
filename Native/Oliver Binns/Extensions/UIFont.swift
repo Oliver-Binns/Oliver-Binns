@@ -1,9 +1,3 @@
-//
-//  UIFont.swift
-//  Oliver Binns
-//
-//  Created by Oliver Binns on 12/09/2020.
-//
 import UIKit
 
 extension UIFont {

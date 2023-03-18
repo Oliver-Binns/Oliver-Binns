@@ -7,44 +7,76 @@
 import SwiftUI
 
 struct PostView: View {
-    @State var post: Post
+    let post: Post
+    @State private var postContent: [PostContent] = []
 
     var body: some View {
-        ScrollView(.vertical) {
-            VStack(alignment: .leading, spacing: 8) {
-                PostHeader(post: post)
-                ForEach(0..<post.content.count, id: \.self) { index in
-                    viewForContent(post.content[index])
-                }.padding(.bottom, 16)
+        GeometryReader { proxy in
+            ScrollView(.vertical) {
+                VStack(alignment: .leading, spacing: 0) {
+                    PostHeader(post: post)
+
+                    if postContent.isEmpty {
+                        HStack {
+                            Spacer()
+                            ActivityIndicator(isAnimating: .constant(true), style: .large)
+                            Spacer()
+                        }
+                    }
+
+                    VStack(spacing: 8) {
+                        ForEach(0..<postContent.count, id: \.self) { index in
+                            viewForContent(postContent[index])
+                        }
+                    }.padding(proxy.safeAreaInsets)
+                }
             }
-            .readableGuidePadding()
-        }.navigationBarItems(trailing: ShareButton(activityItems: [post.link]) {
-            Image(systemName: "square.and.arrow.up")
-        })
+            .navigationBarItems(trailing: ShareButton(activityItems: [URL.web(forPost: post)]) {
+                Image(systemName: "square.and.arrow.up")
+            })
+            .task {
+                await loadPost()
+            }.ignoresSafeArea(.container, edges: .horizontal)
+        }
+    }
+
+    private func loadPost() async {
+        do {
+            self.postContent = try await BlogService
+                .getPost(path: post.contentPath, client: .init())
+        } catch {
+            // todo: handle error
+            print("error occurred \(error)")
+        }
+    }
+
+    func font(for level: Int) -> Font {
+        switch level {
+        case 1: return .largeTitle
+        case 2: return .title
+        case 3: return .title2
+        case 4: return .title3
+        case 5: return .headline
+        default: return .subheadline
+        }
     }
 
     @ViewBuilder
     func viewForContent(_ content: PostContent) -> some View {
         switch content {
-        case .heading1(let string):
-            Text(string).font(.title)
-        case .heading2(let string):
-            Text(string).font(.title2)
-        case .heading3(let string):
-            Text(string).font(.title3)
-        case .heading4(let string):
-            Text(string).font(.headline)
-        case .heading5(let string):
-            Text(string).font(.callout)
-        case .heading6(let string):
-            Text(string).font(.subheadline)
+        case .heading(let string, let level):
+            Text(string)
+                .font(font(for: level))
+                .padding(.top)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .readableGuidePadding()
         case .body(let string):
-            AttributedText(attributedText: string)
-        case .superscript(let string):
-            AttributedText(attributedText: string,
-                           font: .serifCaption, textColor: .secondaryLabel)
-        case .code(let title, let content):
-            CodeBlock(title: title, code: content)
+            Text(string)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.bottom)
+                .readableGuidePadding()
+        case .code(let content):
+            CodeSnippet(code: content)
         case .slider(let caption, let firstImage, let secondImage):
             Slider(caption: caption, firstImage: firstImage, secondImage: secondImage)
         case .figure(let caption, let url):
@@ -55,15 +87,18 @@ struct PostView: View {
             VStack(alignment: .center, spacing: 4) {
                 YouTubePlayer(videoID: videoID)
                     .aspectRatio(CGSize(width: 16, height: 9), contentMode: .fit)
-                Text(caption)
-                    .font(.footnote)
-                    .foregroundColor(.secondary)
-                    .multilineTextAlignment(.center)
-            }
+                if let caption {
+                    Text(caption)
+                        .font(.footnote)
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.center)
+                }
+            }.readableGuidePadding()
         case .link(let imageURL, let title, let body, let url):
             LinkView(imageURL: imageURL,
                      title: title, bodyText: body,
                      url: url)
+            .readableGuidePadding()
         case .blank:
             EmptyView()
         case .column(let columns):
@@ -74,6 +109,8 @@ struct PostView: View {
             }
         case .horizontalRule:
             Divider()
+                .frame(height:20)
+                .overlay(Color.accentColor)
         default:
             HStack {
                 Image(systemName: "exclamationmark.triangle.fill")
