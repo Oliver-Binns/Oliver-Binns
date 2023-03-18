@@ -14,7 +14,10 @@ struct PostHeader: View {
                         $0
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                    }, placeholder: { Color.accentColor })
+                    }, placeholder: {
+                        Color.accentColor
+                            .aspectRatio(1, contentMode: .fit)
+                    })
                     .cornerRadius(12)
                     .frame(maxWidth: 200)
 

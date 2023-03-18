@@ -15,6 +15,8 @@
 		070E645829C6337E009B746E /* Markdown in Frameworks */ = {isa = PBXBuildFile; productRef = 070E645729C6337E009B746E /* Markdown */; };
 		070E645A29C64776009B746E /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070E645929C64776009B746E /* String.swift */; };
 		070E645B29C647AD009B746E /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070E645929C64776009B746E /* String.swift */; };
+		070E645E29C66DF1009B746E /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 070E645D29C66DF1009B746E /* SwiftSoup */; };
+		070E646029C66DFC009B746E /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 070E645F29C66DFC009B746E /* SwiftSoup */; };
 		072ABD5D2549BF0C0040F426 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072ABD5C2549BF0C0040F426 /* ShareView.swift */; };
 		072ABD622549BF960040F426 /* ShareButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072ABD612549BF960040F426 /* ShareButton.swift */; };
 		072ABD692549BFDE0040F426 /* ShareButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072ABD612549BF960040F426 /* ShareButton.swift */; };
@@ -177,6 +179,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				070E645829C6337E009B746E /* Markdown in Frameworks */,
+				070E646029C66DFC009B746E /* SwiftSoup in Frameworks */,
 				0786FDD525499B43006F9543 /* Sourceful in Frameworks */,
 				079C5375261723580073F88A /* YouTubeiOSPlayerHelper in Frameworks */,
 			);
@@ -187,6 +190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				070E645629C63379009B746E /* Markdown in Frameworks */,
+				070E645E29C66DF1009B746E /* SwiftSoup in Frameworks */,
 				07E8C0612533283200A39ADF /* Sourceful in Frameworks */,
 				079C5367261720850073F88A /* YouTubeiOSPlayerHelper in Frameworks */,
 			);
@@ -439,6 +443,7 @@
 				0786FDD425499B43006F9543 /* Sourceful */,
 				079C5374261723580073F88A /* YouTubeiOSPlayerHelper */,
 				070E645729C6337E009B746E /* Markdown */,
+				070E645F29C66DFC009B746E /* SwiftSoup */,
 			);
 			productName = Preview;
 			productReference = 0786FD82254999C2006F9543 /* Preview.app */;
@@ -463,6 +468,7 @@
 				07E8C0602533283200A39ADF /* Sourceful */,
 				079C5366261720850073F88A /* YouTubeiOSPlayerHelper */,
 				070E645529C63379009B746E /* Markdown */,
+				070E645D29C66DF1009B746E /* SwiftSoup */,
 			);
 			productName = "Oliver Binns";
 			productReference = 07C0F530250CE48B000B0123 /* Oliver Binns.app */;
@@ -498,6 +504,7 @@
 				07E8C05F2533283200A39ADF /* XCRemoteSwiftPackageReference "Sourceful" */,
 				079C5365261720850073F88A /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */,
 				070E645429C63302009B746E /* XCRemoteSwiftPackageReference "swift-markdown" */,
+				070E645C29C66DF1009B746E /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 			);
 			productRefGroup = 07C0F531250CE48B000B0123 /* Products */;
 			projectDirPath = "";
@@ -889,6 +896,14 @@
 				kind = branch;
 			};
 		};
+		070E645C29C66DF1009B746E /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		079C5365261720850073F88A /* XCRemoteSwiftPackageReference "youtube-ios-player-helper" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ivanlisovyi/youtube-ios-player-helper.git";
@@ -917,6 +932,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 070E645429C63302009B746E /* XCRemoteSwiftPackageReference "swift-markdown" */;
 			productName = Markdown;
+		};
+		070E645D29C66DF1009B746E /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 070E645C29C66DF1009B746E /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+		070E645F29C66DFC009B746E /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 070E645C29C66DF1009B746E /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
 		};
 		0786FDD425499B43006F9543 /* Sourceful */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -18,12 +18,16 @@ struct Slider: View {
             ZStack {
                 if let firstImage,
                     let secondImage {
-                    AsyncImage(url: firstImage)
+                    AsyncImage(url: firstImage,
+                               content: { $0.resizable() },
+                               placeholder: { Color.accentColor })
                         .aspectRatio(contentMode: .fit)
                         .clipped()
                         .overlay(
                             GeometryReader { geometry in
-                                AsyncImage(url: secondImage)
+                                AsyncImage(url: secondImage,
+                                           content: { $0.resizable() },
+                                           placeholder: { Color.accentColor })
                                     .aspectRatio(contentMode: .fill)
                                     .frame(width: geometry.size.width * crop,
                                            height: geometry.size.height,

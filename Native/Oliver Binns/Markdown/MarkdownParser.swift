@@ -1,4 +1,5 @@
 import Markdown
+import SwiftSoup
 import Foundation
 
 struct MarkdownParser {
@@ -17,6 +18,10 @@ struct MarkdownParser {
             let child = children[index]
 
             switch child {
+            case let table as Table:
+                print("found table")
+            case let html as HTMLBlock:
+                try postContent.append(parse(html))
             case let heading as Heading:
                 postContent.append(contentsOf: parse(heading))
             case is ThematicBreak:
@@ -68,6 +73,24 @@ struct MarkdownParser {
                 return []
             }
         })
+    }
+
+    private func parse(_ html: HTMLBlock) throws -> PostContent {
+        guard let juxtapose = try SwiftSoup.parse(html.rawHTML)
+            .body()?.child(0),
+              try juxtapose.className() == "juxtapose" else {
+            return .cannotRender
+        }
+
+        let images = try juxtapose.children().map {
+            try $0.attr("src")
+        }
+
+        guard images.count >= 2 else {
+            return .cannotRender
+        }
+
+        return .slider(nil, .image(path: images[0]), .image(path: images[1]))
     }
 
     private func parse(_ list: OrderedList) -> PostContent {
