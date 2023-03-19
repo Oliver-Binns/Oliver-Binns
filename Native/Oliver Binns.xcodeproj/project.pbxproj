@@ -37,7 +37,7 @@
 		0786FD87254999C2006F9543 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0786FD86254999C2006F9543 /* ContentView.swift */; };
 		0786FD89254999C3006F9543 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0786FD88254999C3006F9543 /* Assets.xcassets */; };
 		0786FD8C254999C3006F9543 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0786FD8B254999C3006F9543 /* Preview Assets.xcassets */; };
-		0786FD91254999C3006F9543 /* Preview.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = 0786FD82254999C2006F9543 /* Preview.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		0786FD91254999C3006F9543 /* Oliver Binns - Post.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = 0786FD82254999C2006F9543 /* Oliver Binns - Post.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		0786FD98254999F9006F9543 /* ReadableGuidePadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E8C06B253332C600A39ADF /* ReadableGuidePadding.swift */; };
 		0786FD9B254999FC006F9543 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0786FD7A25499455006F9543 /* Card.swift */; };
 		0786FDA725499A0A006F9543 /* PostPreviewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B149252531D8B200281920 /* PostPreviewsView.swift */; };
@@ -113,7 +113,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/AppClips";
 			dstSubfolderSpec = 16;
 			files = (
-				0786FD91254999C3006F9543 /* Preview.app in Embed App Clips */,
+				0786FD91254999C3006F9543 /* Oliver Binns - Post.app in Embed App Clips */,
 			);
 			name = "Embed App Clips";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,7 +138,7 @@
 		0786FD7125498E48006F9543 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
 		0786FD7625499307006F9543 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		0786FD7A25499455006F9543 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
-		0786FD82254999C2006F9543 /* Preview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Preview.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0786FD82254999C2006F9543 /* Oliver Binns - Post.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Oliver Binns - Post.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0786FD84254999C2006F9543 /* PreviewApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewApp.swift; sourceTree = "<group>"; };
 		0786FD86254999C2006F9543 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0786FD88254999C3006F9543 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -355,7 +355,7 @@
 			isa = PBXGroup;
 			children = (
 				07C0F530250CE48B000B0123 /* Oliver Binns.app */,
-				0786FD82254999C2006F9543 /* Preview.app */,
+				0786FD82254999C2006F9543 /* Oliver Binns - Post.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -446,7 +446,7 @@
 				070E645F29C66DFC009B746E /* SwiftSoup */,
 			);
 			productName = Preview;
-			productReference = 0786FD82254999C2006F9543 /* Preview.app */;
+			productReference = 0786FD82254999C2006F9543 /* Oliver Binns - Post.app */;
 			productType = "com.apple.product-type.application.on-demand-install-capable";
 		};
 		07C0F52F250CE48B000B0123 /* Oliver Binns */ = {
@@ -644,7 +644,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Preview/Preview.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.4;
+				CURRENT_PROJECT_VERSION = 2.0.0;
 				DEVELOPMENT_ASSET_PATHS = "\"Preview/Preview Content\"";
 				DEVELOPMENT_TEAM = Z86DH46P79;
 				ENABLE_PREVIEWS = YES;
@@ -654,9 +654,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.oliverbinns.oliverbinns.clip;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Oliver Binns - Post";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -669,7 +669,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Preview/Preview.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.4;
+				CURRENT_PROJECT_VERSION = 2.0.0;
 				DEVELOPMENT_ASSET_PATHS = "\"Preview/Preview Content\"";
 				DEVELOPMENT_TEAM = Z86DH46P79;
 				ENABLE_PREVIEWS = YES;
@@ -679,9 +679,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.oliverbinns.oliverbinns.clip;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Oliver Binns - Post";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -811,7 +811,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Oliver Binns/Oliver Binns.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.4;
+				CURRENT_PROJECT_VERSION = 2.0.0;
 				DEVELOPMENT_ASSET_PATHS = "\"Oliver Binns/Preview Content\"";
 				DEVELOPMENT_TEAM = Z86DH46P79;
 				ENABLE_PREVIEWS = YES;
@@ -821,7 +821,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.oliverbinns.oliverbinns;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -837,7 +837,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Oliver Binns/Oliver Binns.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.4;
+				CURRENT_PROJECT_VERSION = 2.0.0;
 				DEVELOPMENT_ASSET_PATHS = "\"Oliver Binns/Preview Content\"";
 				DEVELOPMENT_TEAM = Z86DH46P79;
 				ENABLE_PREVIEWS = YES;
@@ -847,7 +847,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = uk.co.oliverbinns.oliverbinns;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
