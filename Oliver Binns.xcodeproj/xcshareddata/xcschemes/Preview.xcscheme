@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0786FD81254999C2006F9543"
-               BuildableName = "Preview.app"
+               BuildableName = "Oliver Binns - Post.app"
                BlueprintName = "Preview"
                ReferencedContainer = "container:Oliver Binns.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0786FD81254999C2006F9543"
-            BuildableName = "Preview.app"
+            BuildableName = "Oliver Binns - Post.app"
             BlueprintName = "Preview"
             ReferencedContainer = "container:Oliver Binns.xcodeproj">
          </BuildableReference>
@@ -69,7 +69,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0786FD81254999C2006F9543"
-            BuildableName = "Preview.app"
+            BuildableName = "Oliver Binns - Post.app"
             BlueprintName = "Preview"
             ReferencedContainer = "container:Oliver Binns.xcodeproj">
          </BuildableReference>
