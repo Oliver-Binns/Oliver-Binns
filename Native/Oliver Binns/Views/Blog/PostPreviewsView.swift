@@ -27,7 +27,7 @@ struct PostPreviewsView: View {
             }
             .padding(.top)
             .sheet(item: $selectedItem) { post in
-                PostView(post: post)
+                PostView(post: post, canBeDismissed: true)
             }
         }
         .navigationBarTitle("Blog")

@@ -8,8 +8,9 @@ import SwiftUI
 
 struct PostView: View {
     let post: Post
-    @State private var postContent: [PostContent] = []
+    let canBeDismissed: Bool
 
+    @State private var postContent: [PostContent] = []
     @Environment(\.dismiss) var dismiss
 
     var body: some View {
@@ -24,7 +25,7 @@ struct PostView: View {
                                 Spacer()
                                 ActivityIndicator(isAnimating: .constant(true), style: .large)
                                 Spacer()
-                            }
+                            }.padding()
                         }
 
                         VStack(spacing: 8) {
@@ -41,11 +42,13 @@ struct PostView: View {
                     await loadPost()
                 }.ignoresSafeArea(.container, edges: .horizontal)
 
-                Button { dismiss() } label: {
-                    Image(systemName: "xmark.circle.fill")
-                        .shadow(radius: 8)
-                        .font(.largeTitle)
-                }.padding()
+                if canBeDismissed {
+                    Button { dismiss() } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .shadow(radius: 8)
+                            .font(.largeTitle)
+                    }.padding()
+                }
             }
         }
     }

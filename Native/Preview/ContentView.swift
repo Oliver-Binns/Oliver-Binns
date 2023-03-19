@@ -12,35 +12,32 @@ struct ContentView: View {
     @State var isLoading: Bool = false
 
     var body: some View {
-        if post == nil {
+        if let post {
+            PostView(post: post, canBeDismissed: false)
+        } else {
             if isLoading {
                 ActivityIndicator(isAnimating: .constant(true),
                                   style: .large)
             } else {
                 Text("Error")
-                .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { activity in
-                    guard let url = activity.webpageURL,
-                          !url.lastPathComponent.isEmpty else { return }
-                    isLoading = true
-                    let slug = url.lastPathComponent
-                    loadPost(withSlug: slug)
-                }
+                    .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { activity in
+                        guard let url = activity.webpageURL else { return }
+                        isLoading = true
+                        let postID = url.lastPathComponent
+                        Task { await loadPost(postID) }
+                    }
             }
-        } else {
-            PostView(post: post!)
         }
     }
 
-    func loadPost(withSlug slug: String) {
-        /*BlogService.getPost(slug: slug, client: .init()) { result in
-            switch result {
-            case .success(let post):
-                self.post = post
-            case .failure(let error):
-                isLoading = false
-                print(error)
-            }
-        }*/
+    func loadPost(_ id: String) async {
+        do {
+            self.post = try await BlogService.getPosts(client: .init()).first(where: {
+                $0.id.hasSuffix(id)
+            })
+        } catch {
+            // TODO: handle error
+        }
     }
 }
 
