@@ -18,8 +18,6 @@ struct MarkdownParser {
             let child = children[index]
 
             switch child {
-            case let table as Table:
-                print("found table")
             case let html as HTMLBlock:
                 try postContent.append(parse(html))
             case let heading as Heading:
@@ -138,12 +136,29 @@ struct MarkdownParser {
                     URL(string: imagePath)! : .image(path: imagePath)
 
                 // find caption (next node)
-                index += 2
-                let caption = paragraph.child(at: index) as? Emphasis
+                var captionNode: Markup? = child
+                while captionNode is Image || captionNode is SoftBreak {
+                    index += 1
+                    captionNode = paragraph.child(at: index)
+                }
 
+                let caption = captionNode as? Emphasis
                 content.append(.image(caption.map { AttributedString(try: $0.format()) },
                                       altText.string,
                                       imageURL))
+            case let markup as Text where markup.plainText == "|":
+                let sections = Array(paragraph.children).split {
+                    guard let text = $0 as? Text,
+                          text.plainText == "|" else {
+                        return false
+                    }
+                    return true
+                }
+                .map { Paragraph($0.compactMap { $0 as? InlineMarkup }) }
+                .map(parse)
+                .compactMap { $0.first }
+            
+                return [.column(sections)]
             case let markup as InlineMarkup:
                 children.append(markup)
             default:

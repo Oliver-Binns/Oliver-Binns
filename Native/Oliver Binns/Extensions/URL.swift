@@ -8,7 +8,7 @@ extension URL {
         self = url
     }
 
-    static let baseURL = URL(staticString: "https://www.oliverbinns.co.uk/")
+    static let baseURL = URL(staticString: "http://localhost/")
     static var apiURL: URL {
         baseURL.appendingPathComponent("api")
     }
