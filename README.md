@@ -1,5 +1,5 @@
 ### I'm a
-* Senior iOS Consultant @ Deloitte Digital
+* Lead Mobile Developer @ Deloitte Digital
 * Computer Science (MEng) Graduate
 * [Occasional blogger](https://www.oliverbinns.co.uk/blog/)
 
