@@ -12,6 +12,6 @@
 * [PPSim v2 (Dissertation Project)](https://github.com/Oliver-Binns/PRIY)
 
 ### Get in Touch
-* _Do_ [@ me](https://www.twitter.com/oliver_binns)
+* _Do_ [@ me](https://bsky.app/profile/oliverbinns.co.uk)
 * [LinkedIn](https://www.linkedin.com/in/obinns)
 
